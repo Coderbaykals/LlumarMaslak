@@ -31,6 +31,7 @@
 <!-- Favicon (LL kırmızı mark, inline SVG) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M14 8 L42 8 L42 22 L28 22 L28 50 L52 50 L52 8 L66 8 L66 64 L14 64 Z' fill='%23D9202A'/%3E%3Cpath d='M14 64 L66 64 L72 72 L8 72 Z' fill='%23D9202A'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%230A0A0A'/%3E%3Cpath d='M14 8 L42 8 L42 22 L28 22 L28 50 L52 50 L52 8 L66 8 L66 64 L14 64 Z' fill='%23D9202A'/%3E%3Cpath d='M14 64 L66 64 L72 72 L8 72 Z' fill='%23D9202A'/%3E%3C/svg%3E" />
+<link rel="manifest" href="manifest.webmanifest" />
 
 <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
 <meta property="og:type" content="website" />
@@ -1180,6 +1181,182 @@
     line-height: 1.5;
   }
 
+  /* Honeypot — kullanıcı görmemeli, bot doldurur */
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* KVKK rıza checkbox */
+  .check-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    color: var(--off-white);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .check-consent input {
+    accent-color: var(--red);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .check-consent a {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Form success state */
+  .form-success {
+    background: var(--black-3);
+    border: 1px solid var(--line);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.6s ease;
+  }
+  .form-success::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 60px; height: 60px;
+    border-top: 2px solid var(--red);
+    border-left: 2px solid var(--red);
+  }
+  .form-success::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 60px; height: 60px;
+    border-bottom: 2px solid var(--red);
+    border-right: 2px solid var(--red);
+  }
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
+    font-weight: 600;
+  }
+  .success-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .success-text {
+    color: var(--gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+  .success-text a { color: var(--red); font-weight: 600; }
+
+  /* Form error state */
+  .form-error {
+    background: var(--black-3);
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 1.75rem;
+    margin-top: 1rem;
+  }
+  .error-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .error-text { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+  .error-text a { color: var(--red); font-weight: 600; }
+
+  /* Cookie consent banner */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: var(--black-2);
+    border-top: 1px solid var(--line);
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    transform: translateY(100%);
+    transition: transform .4s ease;
+  }
+  .cookie-banner.show { transform: translateY(0); }
+  .cookie-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cookie-text {
+    font-size: 0.85rem;
+    color: var(--off-white);
+    line-height: 1.55;
+    flex: 1;
+    min-width: 280px;
+  }
+  .cookie-text a {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cookie-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+  .cookie-btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .3s, opacity .3s;
+    border: 1px solid transparent;
+    min-height: 42px;
+  }
+  .cookie-btn.cookie-accept {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  .cookie-btn.cookie-accept:hover { background: var(--red-deep); }
+  .cookie-btn.cookie-reject {
+    background: transparent;
+    color: var(--off-white);
+    border-color: var(--gray-2);
+  }
+  .cookie-btn.cookie-reject:hover { border-color: var(--red); }
+  @media (max-width: 600px) {
+    .cookie-content { flex-direction: column; align-items: stretch; }
+    .cookie-actions { width: 100%; }
+    .cookie-btn { flex: 1; }
+  }
+
+  /* Submit button disabled state */
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    pointer-events: none;
+  }
+
   /* ============= SSS ============= */
   .faq {
     background: var(--black);
@@ -1777,30 +1954,35 @@
         </div>
       </div>
 
-      <form class="quote-form" onsubmit="event.preventDefault(); alert('Demo: Form gönderildi. Gerçek sitede yetkili sizi en kısa sürede arar.');">
+      <form class="quote-form" id="quote-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         <div class="form-title">Bilgi al</div>
         <div class="form-subtitle">Bize aracınızı anlatın, biz size en doğru çözümü sunalım. Tüm bilgiler gizli tutulur.</div>
 
+        <!-- Honeypot (bot tuzağı, kullanıcı görmez) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field" />
+        <input type="hidden" name="_subject" value="LLumar Maslak — Yeni Teklif Talebi" />
+        <input type="hidden" name="_format" value="plain" />
+
         <div class="form-row">
           <div class="form-field">
-            <label>Ad Soyad</label>
-            <input type="text" placeholder="Adınız" required />
+            <label for="f-ad">Ad Soyad</label>
+            <input id="f-ad" name="ad_soyad" type="text" placeholder="Adınız" required autocomplete="name" />
           </div>
           <div class="form-field">
-            <label>Telefon</label>
-            <input type="tel" placeholder="+90 5__ ___ __ __" required />
+            <label for="f-tel">Telefon</label>
+            <input id="f-tel" name="telefon" type="tel" placeholder="+90 5__ ___ __ __" required autocomplete="tel" inputmode="tel" />
           </div>
         </div>
 
         <div class="form-field">
-          <label>E-posta</label>
-          <input type="email" placeholder="ornek@mail.com" />
+          <label for="f-mail">E-posta</label>
+          <input id="f-mail" name="email" type="email" placeholder="ornek@mail.com" autocomplete="email" />
         </div>
 
         <div class="form-row">
           <div class="form-field">
-            <label>Araç Markası</label>
-            <select required>
+            <label for="f-marka">Araç Markası</label>
+            <select id="f-marka" name="arac_markasi" required>
               <option value="">Seçiniz</option>
               <option>Porsche</option>
               <option>Mercedes-Benz</option>
@@ -1815,8 +1997,8 @@
             </select>
           </div>
           <div class="form-field">
-            <label>Model & Yıl</label>
-            <input type="text" placeholder="Cayenne 2024" />
+            <label for="f-model">Model & Yıl</label>
+            <input id="f-model" name="model_yil" type="text" placeholder="Cayenne 2024" />
           </div>
         </div>
 
@@ -1824,20 +2006,39 @@
           <label>İlgilendiğiniz Hizmet</label>
         </div>
         <div class="form-checkboxes" id="checkboxes">
-          <label class="check-pill"><input type="checkbox" /> Cam Filmi (Tam Set)</label>
-          <label class="check-pill"><input type="checkbox" /> Sadece Ön Cam</label>
-          <label class="check-pill"><input type="checkbox" /> PPF (Boya Koruma)</label>
-          <label class="check-pill"><input type="checkbox" /> Henüz Karar Vermedim</label>
+          <label class="check-pill"><input type="checkbox" name="hizmet[]" value="Cam Filmi (Tam Set)" /> Cam Filmi (Tam Set)</label>
+          <label class="check-pill"><input type="checkbox" name="hizmet[]" value="Sadece Ön Cam" /> Sadece Ön Cam</label>
+          <label class="check-pill"><input type="checkbox" name="hizmet[]" value="PPF (Boya Koruma)" /> PPF (Boya Koruma)</label>
+          <label class="check-pill"><input type="checkbox" name="hizmet[]" value="Cam Çatlağı Tamiri" /> Cam Çatlağı Tamiri</label>
+          <label class="check-pill"><input type="checkbox" name="hizmet[]" value="Henüz Karar Vermedim" /> Henüz Karar Vermedim</label>
         </div>
 
         <div class="form-field">
-          <label>Notlar (isteğe bağlı)</label>
-          <textarea placeholder="Tercih ettiğiniz seri, randevu zamanı veya soru..."></textarea>
+          <label for="f-not">Notlar (isteğe bağlı)</label>
+          <textarea id="f-not" name="notlar" placeholder="Tercih ettiğiniz seri, randevu zamanı veya soru..."></textarea>
         </div>
+
+        <label class="check-consent">
+          <input type="checkbox" name="kvkk_onay" value="onayladı" required />
+          <span><a href="kvkk.html" target="_blank" rel="noopener">KVKK Aydınlatma Metni</a>'ni okudum ve iletişim bilgilerimin işlenmesine açık rıza veriyorum.</span>
+        </label>
 
         <button type="submit" class="form-submit">Bilgi Talebi Gönder</button>
         <div class="form-note">Bilgileriniz KVKK kapsamında korunur. En kısa sürede sizi ararız.</div>
       </form>
+
+      <!-- Form success state -->
+      <div class="form-success" id="form-success" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <div class="success-title">Teşekkürler!</div>
+        <div class="success-text">Bilgi talebiniz tarafımıza ulaştı. En kısa sürede sizi arayacağız. Acil durumlarda <a href="tel:+905073330703">0 (507) 333 07 03</a> numarasından da bize ulaşabilirsiniz.</div>
+      </div>
+
+      <!-- Form error state -->
+      <div class="form-error" id="form-error" hidden>
+        <div class="error-title">Bir sorun oluştu</div>
+        <div class="error-text">Form gönderilemedi. Lütfen tekrar deneyin ya da bizi doğrudan arayın: <a href="tel:+905073330703">0 (507) 333 07 03</a> · <a href="https://wa.me/905073330703" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1937,15 +2138,28 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="copy">© 2026 LLumar Maslak · Tüm hakları saklıdır · KVKK · Gizlilik</div>
+      <div class="copy">© 2026 LLumar Maslak · Tüm hakları saklıdır · <a href="kvkk.html">KVKK Aydınlatma</a> · <a href="gizlilik.html">Gizlilik</a> · <a href="cerez-politikasi.html">Çerez Politikası</a></div>
       <div class="social">
-        <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
-        <a href="#">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Cookie Consent Banner (KVKK) -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Çerez tercihleri" aria-live="polite">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      Bu sitede deneyiminizi geliştirmek ve ziyaretçi istatistiklerini ölçmek için çerezler kullanıyoruz. Detaylar için <a href="cerez-politikasi.html">çerez politikamızı</a> inceleyebilirsiniz.
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-reject" id="cookie-reject" type="button">Reddet</button>
+      <button class="cookie-btn cookie-accept" id="cookie-accept" type="button">Kabul Et</button>
+    </div>
+  </div>
+</div>
 
 <!-- WhatsApp Float -->
 <a href="https://wa.me/905073330703" class="wa-float" aria-label="WhatsApp ile iletişim">
@@ -2001,6 +2215,102 @@
       e.target.closest('.check-pill').classList.toggle('active', e.target.checked);
     });
   });
+
+  // ============= QUOTE FORM SUBMIT (Formspree) =============
+  const quoteForm = document.getElementById('quote-form');
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot kontrolü — bot doldurduysa sessizce başarıyı oyna
+      const hp = quoteForm.querySelector('input[name="_gotcha"]');
+      if (hp && hp.value) {
+        quoteForm.style.display = 'none';
+        formSuccess.hidden = false;
+        return;
+      }
+
+      // Formspree placeholder kontrolü — yayın öncesi uyarı
+      if (quoteForm.action.includes('YOUR_FORMSPREE_ID')) {
+        alert('Form henüz aktif değil. Formspree ID eklenmesi gerekiyor.\n\nGeçici olarak bizi doğrudan arayın:\n0 (507) 333 07 03');
+        return;
+      }
+
+      const submitBtn = quoteForm.querySelector('.form-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Gönderiliyor...';
+      formError.hidden = true;
+
+      try {
+        const formData = new FormData(quoteForm);
+        const response = await fetch(quoteForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          quoteForm.style.display = 'none';
+          formSuccess.hidden = false;
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'Quote Form' });
+          }
+        } else {
+          throw new Error('submit_failed');
+        }
+      } catch (err) {
+        formError.hidden = false;
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+
+  // ============= COOKIE CONSENT (KVKK) =============
+  (function() {
+    const CONSENT_KEY = 'llumar-cookie-consent';
+    const GA_ID = 'G-XXXXXXXXXX'; // Yayın öncesi gerçek GA4 Measurement ID ile değiştirilecek
+
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem(CONSENT_KEY);
+
+    function loadAnalytics() {
+      if (GA_ID === 'G-XXXXXXXXXX' || !GA_ID) return; // placeholder ise yükleme
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+
+    if (consent === 'accept') {
+      loadAnalytics();
+    } else if (!consent) {
+      // İlk ziyarette banner'ı göster (sayfa içeriği görüldükten sonra)
+      setTimeout(() => banner.classList.add('show'), 800);
+    }
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'accept');
+      banner.classList.remove('show');
+      loadAnalytics();
+    });
+    document.getElementById('cookie-reject')?.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'reject');
+      banner.classList.remove('show');
+    });
+  })();
 </script>
 
 <!-- ============= STRUCTURED DATA (JSON-LD) ============= -->

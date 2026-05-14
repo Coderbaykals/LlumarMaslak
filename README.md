@@ -24,11 +24,17 @@ Tek dosya, vanilla HTML / CSS / JS. Build adımı yok. GitHub Pages üzerinden y
 ## Dosya Yapısı
 
 ```
-index.html       Ana sayfa (her şey burada)
-robots.txt       Crawler yol haritası
-sitemap.xml      Arama motorları için site haritası
-llms.txt         AI motorları için yapılandırılmış özet
-README.md        Bu dosya
+index.html              Ana sayfa
+kvkk.html               KVKK Aydınlatma Metni
+gizlilik.html           Gizlilik Politikası
+cerez-politikasi.html   Çerez Politikası
+404.html                Bulunamadı sayfası
+manifest.webmanifest    PWA manifest
+robots.txt              Crawler yol haritası (AI crawler'lar açık)
+sitemap.xml             Site haritası (tüm sayfalar)
+llms.txt                AI motorları için yapılandırılmış özet
+og-image.jpg            Sosyal paylaşım görseli (EKLENECEK)
+README.md               Bu dosya
 ```
 
 ## SEO / AEO
@@ -38,3 +44,28 @@ README.md        Bu dosya
 - Geo metadata (Maslak/İstanbul, 41.1086, 29.0186)
 - robots.txt AI crawler'lara açık (GPTBot, PerplexityBot, ClaudeBot, Google-Extended, vb.)
 - llms.txt AI motorları için
+
+## Production Fonksiyonları
+
+- **Form gönderim:** Formspree integration. `index.html` içinde `action="https://formspree.io/f/YOUR_FORMSPREE_ID"` — yayın öncesi gerçek ID ile değiştirilecek.
+- **Honeypot:** Hidden `_gotcha` field, spam botlarını sessizce filtreler.
+- **KVKK rıza:** Form'da zorunlu açık rıza checkbox.
+- **Cookie banner:** İlk ziyarette KVKK uyumlu banner, localStorage'da tercih kaydı.
+- **Analytics:** Google Analytics 4 (consent sonrası yüklenir). `index.html` içinde `GA_ID = 'G-XXXXXXXXXX'` — yayın öncesi gerçek Measurement ID ile değiştirilecek.
+- **PWA:** Manifest dosyası, "Ana ekrana ekle" desteği.
+- **404:** Özel hata sayfası.
+
+## Yayın Öncesi Checklist
+
+- [ ] Formspree hesabı aç ([formspree.io](https://formspree.io)), form ID al
+- [ ] `index.html` içinde `YOUR_FORMSPREE_ID` yerine gerçek ID
+- [ ] Google Analytics 4 mülkü oluştur, Measurement ID al
+- [ ] `index.html` içinde `G-XXXXXXXXXX` yerine gerçek ID
+- [ ] `og-image.jpg` ekle (1200×630 px, repo köküne)
+- [ ] Custom domain ekle ve `CNAME` dosyası oluştur
+- [ ] Schema/canonical/sitemap URL'lerini custom domain'e güncelle
+- [ ] Google Search Console + Bing Webmaster Tools'a sitemap submit
+- [ ] Google Business Profile kaydı
+- [ ] Gerçek galeri görsellerini ekle
+- [ ] Sosyal medya hesapları açıldıysa footer link'lerini güncelle
+- [ ] KVKK + Gizlilik + Çerez politikası metinlerini hukuk müşaviri inceler
