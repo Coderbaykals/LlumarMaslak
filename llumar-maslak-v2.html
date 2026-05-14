@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LLumar Maslak — Premium Cam Filmi & PPF | Maslak, İstanbul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============= TOKENS ============= */
+  :root {
+    --black: #0A0A0A;
+    --black-2: #141414;
+    --black-3: #1A1A1A;
+    --black-4: #242424;
+    --red: #D9202A;
+    --red-light: #E84850;
+    --red-deep: #A8181F;
+    --red-dark: #6B0F14;
+    --white: #FFFFFF;
+    --off-white: #F5F5F5;
+    --gray: #8A8A8A;
+    --gray-2: #4A4A4A;
+    --line: #2A2A2A;
+
+    --serif: 'Cormorant Garamond', 'Georgia', serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+
+    --container: 1280px;
+    --gutter: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+  }
+  /* Prevent iOS zoom on input focus */
+  input, select, textarea { font-size: 16px !important; }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; transition: opacity .3s; }
+  a:hover { opacity: .75; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ============= TYPOGRAPHY ============= */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--red);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .h-display { font-size: clamp(3.2rem, 8vw, 7.5rem); font-weight: 300; }
+  .h-section { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 400; }
+  .h-card { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 500; }
+
+  .lede {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.5;
+  }
+
+  .red { color: var(--red); }
+  .italic { font-style: italic; }
+
+  /* ============= LLUMAR LOGO ============= */
+  .llumar-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .llumar-logo .mark {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+  .llumar-logo .wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .llumar-logo .wordmark .name {
+    font-family: var(--sans);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .llumar-logo .wordmark .loc {
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--red);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============= HEADER / NAV ============= */
+  header.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+  }
+  header.nav.scrolled {
+    border-bottom-color: var(--line);
+    background: rgba(10, 10, 10, 0.92);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  nav.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+  }
+  nav.menu a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--off-white);
+  }
+  .nav-cta {
+    background: var(--red);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background .3s, transform .3s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--red-deep); opacity: 1; transform: translateY(-1px); }
+
+  /* Mobile menu toggle */
+  .menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .menu-toggle span {
+    width: 18px;
+    height: 1.5px;
+    background: var(--white);
+    transition: transform .3s, opacity .3s;
+  }
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+  nav.menu .mobile-cta { display: none; }
+
+  @media (max-width: 900px) {
+    .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    nav.menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 380px;
+      height: 100dvh;
+      background: var(--black);
+      border-left: 1px solid var(--line);
+      padding: 6rem 2rem 2rem;
+      transform: translateX(100%);
+      transition: transform .4s ease;
+      overflow-y: auto;
+    }
+    nav.menu.open { transform: translateX(0); }
+    nav.menu ul {
+      flex-direction: column;
+      gap: 0;
+    }
+    nav.menu li {
+      border-bottom: 1px solid var(--line);
+    }
+    nav.menu a {
+      display: block;
+      padding: 1.2rem 0;
+      font-size: 1.1rem;
+      font-family: var(--serif);
+      font-weight: 400;
+    }
+    nav.menu .mobile-cta {
+      display: block;
+      margin-top: 2rem;
+      background: var(--red);
+      color: var(--white);
+      padding: 1.1rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .llumar-logo .wordmark .name { font-size: 1.1rem; }
+    .llumar-logo .wordmark .loc { font-size: 0.7rem; }
+    .llumar-logo .mark { width: 32px; height: 32px; }
+  }
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+  }
+  .menu-overlay.show {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ============= HERO ============= */
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 10rem 0 7rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .hero { padding: 8rem 0 9rem; }
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(217, 32, 42, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 15% 85%, rgba(217, 32, 42, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 950px;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 0.4s forwards;
+    color: var(--white);
+  }
+  .hero h1 .line { display: block; }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--red);
+    font-weight: 300;
+  }
+
+  .hero .lede {
+    max-width: 580px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 0.6s forwards;
+    color: #D0D0D0;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 0.8s forwards;
+  }
+  @media (max-width: 500px) {
+    .hero-cta { flex-direction: column; gap: 0.75rem; }
+    .hero-cta .btn { width: 100%; justify-content: center; }
+  }
+  .btn {
+    padding: 1.1rem 2.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: all .35s;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 48px;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+  }
+  .btn-primary:hover {
+    background: var(--red-deep);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(217, 32, 42, 0.25);
+  }
+  .btn-ghost {
+    border-color: var(--gray-2);
+    color: var(--off-white);
+  }
+  .btn-ghost:hover {
+    border-color: var(--red);
+    color: var(--red);
+    opacity: 1;
+  }
+  .btn .arrow { transition: transform .3s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 1.2s forwards;
+  }
+  @media (max-width: 700px) {
+    .hero-scroll { display: none; }
+  }
+  .hero-scroll .label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .hero-scroll .line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* Hero corner ornament — red accent */
+  .hero-ornament {
+    position: absolute;
+    top: 50%;
+    right: -200px;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 1px solid var(--red-dark);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .hero-ornament::after {
+    content: '';
+    position: absolute;
+    inset: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--red-dark);
+  }
+
+  /* Hero brand mark watermark — large faded LLumar L in background */
+  .hero-watermark {
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 500px;
+    height: 500px;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @media (max-width: 700px) {
+    .hero-watermark {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      right: -50px;
+      opacity: 0.05;
+    }
+    .hero-ornament {
+      width: 400px;
+      height: 400px;
+      right: -250px;
+    }
+  }
+  .hero-watermark svg { width: 100%; height: 100%; }
+
+  /* ============= SECTIONS ============= */
+  section {
+    padding: 8rem 0;
+    position: relative;
+  }
+  @media (max-width: 700px) {
+    section { padding: 5rem 0; }
+  }
+
+  .section-head {
+    margin-bottom: 4rem;
+    max-width: 720px;
+  }
+  @media (max-width: 700px) {
+    .section-head { margin-bottom: 2.5rem; }
+  }
+  .section-head .eyebrow { margin-bottom: 1.5rem; display: inline-block; }
+  .section-head h2 { margin-bottom: 1.5rem; color: var(--white); }
+
+  /* ============= MARKA HİKAYESİ ============= */
+  .story {
+    background: var(--black-2);
+    border-top: 1px solid var(--line);
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .story-side { position: static; }
+    .story-side .stat { margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 1rem; }
+    .story-side .stat-number { font-size: 2.5rem; margin-bottom: 0; }
+    .story-text p:first-of-type::first-letter {
+      font-size: 3rem;
+      padding: 0.3rem 0.6rem 0 0;
+    }
+  }
+  .story-side {
+    position: sticky;
+    top: 8rem;
+  }
+  .story-side .stat {
+    margin-bottom: 3rem;
+  }
+  .story-side .stat-number {
+    font-family: var(--serif);
+    font-size: 4rem;
+    color: var(--red);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .story-side .stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+  }
+  .story-text {
+    font-size: 1.05rem;
+    color: var(--off-white);
+    line-height: 1.8;
+  }
+  .story-text h2 { color: var(--white); margin-bottom: 2rem; }
+  .story-text p { margin-bottom: 1.5rem; }
+  .story-text p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 4rem;
+    float: left;
+    line-height: 1;
+    padding: 0.4rem 0.8rem 0 0;
+    color: var(--red);
+    font-weight: 400;
+  }
+
+  /* ============= HİZMETLER ============= */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 800px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+  .service-card {
+    background: var(--black);
+    padding: 3.5rem 3rem;
+    transition: background .4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 700px) {
+    .service-card { padding: 2.5rem 1.75rem; }
+  }
+  .service-card:hover { background: var(--black-2); }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--red);
+    transition: width .5s;
+  }
+  .service-card:hover::after { width: 100%; }
+
+  .service-num {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .service-card h3 {
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+  .service-card .desc {
+    color: var(--gray);
+    margin-bottom: 1.8rem;
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+  .service-card .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.8rem;
+  }
+  .service-card .tag {
+    border: 1px solid var(--line);
+    color: var(--off-white);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: border-color .3s, color .3s;
+  }
+  .service-card:hover .tag { border-color: var(--red-deep); color: var(--off-white); }
+  .service-card .arrow-link {
+    color: var(--red);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Ek hizmetler — alt şerit */
+  .extra-services {
+    margin-top: 1.5rem;
+  }
+  .extra-item {
+    border: 1px solid var(--line);
+    background: var(--black);
+    padding: 1.75rem 2.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    transition: border-color .3s, background .3s;
+  }
+  .extra-item:hover { border-color: var(--red-deep); background: var(--black-2); }
+  .extra-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .extra-body .extra-name {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  .extra-body .extra-desc {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .extra-item .arrow-link {
+    color: var(--red);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  @media (max-width: 700px) {
+    .extra-item {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 1.5rem 1.75rem;
+    }
+  }
+
+  /* ============= ÜRÜN SERİLERİ ============= */
+  .series {
+    background: var(--black-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .series-rail {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 1100px) {
+    .series-rail { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 850px) {
+    .series-rail {
+      display: flex;
+      grid-template-columns: none;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      margin-left: calc(var(--gutter) * -1);
+      margin-right: calc(var(--gutter) * -1);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+      scrollbar-width: thin;
+      scrollbar-color: var(--red-deep) var(--black);
+    }
+    .series-rail::-webkit-scrollbar { height: 4px; }
+    .series-rail::-webkit-scrollbar-track { background: var(--black); }
+    .series-rail::-webkit-scrollbar-thumb { background: var(--red-deep); }
+    .series-card {
+      flex: 0 0 75%;
+      max-width: 280px;
+      scroll-snap-align: start;
+    }
+  }
+  @media (max-width: 500px) {
+    .series-card {
+      flex: 0 0 80%;
+    }
+  }
+  .series-card {
+    border: 1px solid var(--line);
+    background: var(--black);
+    padding: 2rem 1.5rem;
+    transition: border-color .3s, transform .3s, background .3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .series-card:hover {
+    border-color: var(--red);
+    transform: translateY(-4px);
+    background: var(--black-3);
+  }
+  .series-card .tier {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .series-card .name {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+  .series-card .sub {
+    font-size: 0.7rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    min-height: 2.2em;
+  }
+  .series-card .features {
+    list-style: none;
+    margin-top: 0.5rem;
+    flex-grow: 1;
+  }
+  .series-card .features li {
+    font-size: 0.85rem;
+    color: var(--gray);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .series-card .features li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+  }
+  .series-card .badge {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .series-card .badge.flag {
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  .swipe-hint {
+    display: none;
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 850px) {
+    .swipe-hint { display: block; }
+  }
+
+  /* ============= NEDEN LLUMAR ============= */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 5rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 800px) {
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  .why-item {
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+    position: relative;
+  }
+  .why-item::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--red);
+  }
+  .why-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--red);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .why-item h3 {
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+  .why-item p {
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ============= GALERİ ============= */
+  .gallery {
+    background: var(--black);
+    overflow: hidden;
+  }
+  .gallery-rail {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--red-deep) var(--black-2);
+  }
+  @media (max-width: 700px) {
+    .gallery-rail {
+      gap: 1rem;
+      margin-left: calc(var(--gutter) * -1);
+      margin-right: calc(var(--gutter) * -1);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+  }
+  .gallery-rail::-webkit-scrollbar { height: 4px; }
+  .gallery-rail::-webkit-scrollbar-track { background: var(--black-2); }
+  .gallery-rail::-webkit-scrollbar-thumb { background: var(--red-deep); }
+
+  .gallery-card {
+    flex: 0 0 380px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: border-color .3s;
+    scroll-snap-align: start;
+  }
+  @media (max-width: 500px) {
+    .gallery-card { flex: 0 0 85%; max-width: 320px; }
+  }
+  .gallery-card:hover { border-color: var(--red-deep); }
+  .gallery-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--black-3), var(--black-2));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gallery-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(217, 32, 42, 0.08), transparent);
+  }
+  .gallery-img .placeholder {
+    font-family: var(--serif);
+    color: var(--red-deep);
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    z-index: 2;
+  }
+  .gallery-info {
+    padding: 1.5rem;
+    background: var(--black-2);
+  }
+  .gallery-info .car {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+    color: var(--white);
+  }
+  .gallery-info .service {
+    font-size: 0.75rem;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ============= FORM ============= */
+  .form-section {
+    background: linear-gradient(180deg, var(--black-2) 0%, var(--black) 100%);
+    border-top: 1px solid var(--line);
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  @media (max-width: 900px) {
+    .form-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .form-side .pitch {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .form-side .pitch p { margin-bottom: 1rem; }
+  .form-side .pitch strong { color: var(--off-white); font-weight: 500; }
+
+  .quote-card {
+    border-left: 2px solid var(--red);
+    padding: 1rem 0 1rem 2rem;
+    margin: 2rem 0;
+  }
+  .quote-card .text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+  .quote-card .author {
+    font-size: 0.75rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .contact-item .label {
+    font-size: 0.7rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .contact-item .value {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--white);
+  }
+  .contact-item .value a:hover { color: var(--red-light); opacity: 1; }
+
+  .quote-form {
+    background: var(--black-3);
+    border: 1px solid var(--line);
+    padding: 3rem 2.5rem;
+    position: relative;
+  }
+  @media (max-width: 700px) {
+    .quote-form { padding: 2rem 1.5rem; }
+  }
+  .quote-form::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 60px; height: 60px;
+    border-top: 2px solid var(--red);
+    border-left: 2px solid var(--red);
+  }
+  .quote-form::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 60px; height: 60px;
+    border-bottom: 2px solid var(--red);
+    border-right: 2px solid var(--red);
+  }
+
+  .form-title {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .form-subtitle {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .form-field { margin-bottom: 1.2rem; }
+  .form-field label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--gray-2);
+    color: var(--white);
+    padding: 0.7rem 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    transition: border-color .3s;
+    border-radius: 0;
+    min-height: 44px;
+  }
+  .form-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23D9202A' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    padding-right: 1.5rem;
+  }
+  .form-field select option { background: var(--black-2); color: var(--white); }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--red);
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: var(--gray-2); }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 500px) {
+    .form-checkboxes { grid-template-columns: 1fr; }
+  }
+  .check-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: border-color .3s, background .3s;
+    font-size: 0.9rem;
+    color: var(--off-white);
+    min-height: 48px;
+  }
+  .check-pill:hover { border-color: var(--red-deep); }
+  .check-pill input {
+    accent-color: var(--red);
+    width: 14px; height: 14px;
+  }
+  .check-pill.active {
+    border-color: var(--red);
+    background: rgba(217, 32, 42, 0.07);
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--red);
+    color: var(--white);
+    padding: 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: background .3s, transform .3s, box-shadow .3s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover {
+    background: var(--red-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(217, 32, 42, 0.3);
+  }
+
+  .form-note {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ============= SSS ============= */
+  .faq {
+    background: var(--black);
+    border-top: 1px solid var(--line);
+  }
+  .faq-list {
+    margin-top: 3rem;
+    max-width: 850px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q {
+    padding: 1.8rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--white);
+    transition: color .3s;
+    min-height: 60px;
+  }
+  @media (max-width: 600px) {
+    .faq-q { font-size: 1.1rem; gap: 1rem; padding: 1.3rem 0; }
+  }
+  .faq-q:hover { color: var(--red); }
+  .faq-q .icon {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .faq-q .icon::before,
+  .faq-q .icon::after {
+    content: '';
+    position: absolute;
+    background: var(--red);
+    transition: transform .3s;
+  }
+  .faq-q .icon::before {
+    left: 0; right: 0;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .faq-q .icon::after {
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+  .faq-item.open .faq-q .icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease, padding .3s;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a {
+    max-height: 500px;
+    padding-bottom: 2rem;
+  }
+
+  /* ============= FOOTER ============= */
+  footer {
+    background: var(--black-2);
+    border-top: 1px solid var(--line);
+    padding: 5rem 0 2rem;
+  }
+  @media (max-width: 700px) {
+    footer { padding: 3rem 0 1.5rem; }
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 500px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  .footer-brand .llumar-logo { margin-bottom: 1.2rem; }
+  .footer-brand p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 360px;
+  }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.7rem; }
+  .footer-col a, .footer-col li {
+    color: var(--off-white);
+    font-size: 0.9rem;
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: flex-start; text-align: left; }
+  }
+  .footer-bottom .copy {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  .footer-bottom .social {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ============= ANIMATIONS ============= */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); transform-origin: top; }
+    50% { transform: scaleY(0.3); transform-origin: top; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* WhatsApp floating */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    background: #25D366;
+    color: #FFFFFF;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform .3s;
+  }
+  .wa-float:hover { transform: translateY(-4px); opacity: 1; }
+  .wa-float svg { width: 18px; height: 18px; }
+  @media (max-width: 600px) {
+    .wa-float {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      padding: 0;
+      width: 54px;
+      height: 54px;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .wa-float .wa-text { display: none; }
+    .wa-float svg { width: 24px; height: 24px; }
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: var(--red);
+    color: var(--white);
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    .demo-banner { font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.4rem; }
+  }
+  body.has-banner { padding-top: 30px; }
+  body.has-banner header.nav { top: 30px; }
+</style>
+</head>
+<body class="has-banner">
+
+<!-- Demo Banner -->
+<div class="demo-banner">Mockup · Müşteri revizyon turu 1 · v2.1</div>
+
+<!-- ============= NAV ============= -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#hero" class="llumar-logo" aria-label="LLumar Maslak Anasayfa">
+      <!-- LLumar L mark SVG -->
+      <svg class="mark" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 8 L42 8 L42 22 L28 22 L28 50 L52 50 L52 8 L66 8 L66 64 L14 64 Z" fill="#D9202A"/>
+        <path d="M14 64 L66 64 L72 72 L8 72 Z" fill="#D9202A"/>
+      </svg>
+      <span class="wordmark">
+        <span class="name">LLumar</span>
+        <span class="loc">Maslak</span>
+      </span>
+    </a>
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#hizmetler">Hizmetler</a></li>
+        <li><a href="#seriler">Ürün Serileri</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#sss">S.S.S.</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+      <a href="#fiyat" class="mobile-cta">Fiyat Bilgisi Al</a>
+    </nav>
+    <a href="#fiyat" class="nav-cta">Fiyat Bilgisi</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ============= HERO ============= -->
+<section class="hero" id="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-watermark">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 8 L42 8 L42 22 L28 22 L28 50 L52 50 L52 8 L66 8 L66 64 L14 64 Z" fill="#D9202A"/>
+      <path d="M14 64 L66 64 L72 72 L8 72 Z" fill="#D9202A"/>
+    </svg>
+  </div>
+  <div class="container hero-content">
+    <div class="eyebrow">Maslak · İstanbul · LLumar Yetkili Atölye</div>
+    <h1 class="h-display">
+      <span class="line">Aracınızın</span>
+      <span class="line"><em>hak ettiği</em></span>
+      <span class="line">koruma.</span>
+    </h1>
+    <p class="lede">
+      Premium cam filmi ve boya koruma filmi (PPF) uygulaması.
+      Maslak'ın kalbinde, dünyanın 1 numaralı LLumar markasıyla.
+    </p>
+    <div class="hero-cta">
+      <a href="#fiyat" class="btn btn-primary">
+        Fiyat Bilgisi Al
+        <span class="arrow">→</span>
+      </a>
+      <a href="#hizmetler" class="btn btn-ghost">Hizmetleri Keşfet</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="label">Aşağı Kaydır</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ============= MARKA HİKAYESİ ============= -->
+<section class="story" id="hikaye">
+  <div class="container">
+    <div class="story-grid">
+      <aside class="story-side">
+        <div class="eyebrow" style="margin-bottom: 2rem;">— Marka Hikayesi</div>
+        <div class="stat">
+          <div class="stat-number">1957</div>
+          <div class="stat-label">LLumar'ın Kuruluşu</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">12 yıl</div>
+          <div class="stat-label">Üst Seri Garantisi</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Ülkede Yetkili Servis</div>
+        </div>
+      </aside>
+      <div class="story-text reveal">
+        <h2 class="h-section">
+          Sıradan bir cam filmi atölyesi değil. <em class="red">Bir studio.</em>
+        </h2>
+        <p>
+          LLumar, 1957'den bu yana dünyanın en gelişmiş polyester film teknolojilerini üreten Eastman Performance Films'in amiral markasıdır. Ürünleri 100'den fazla ülkede satılmakta, otomotiv ve mimari uygulamalarda referans olarak kabul edilmektedir.
+        </p>
+        <p>
+          LLumar Maslak, bu küresel mirası İstanbul'un finans ve lüks otomobil yoğunluklu kalbine taşıyor. Sıradan bir bayi olmak yerine, butik bir uygulama atölyesi olarak konumlanıyoruz: az sayıda araçla çalışıyoruz ki her birine hak ettiği özen gösterilebilsin.
+        </p>
+        <p>
+          LLumar sertifikalı uygulayıcılarımız, üretici garantisi ile çalışıyor. Aracınız bizdeyken sadece film uygulamıyoruz — onu döndüğünüzde sizi şaşırtacak bir deneyime hazırlıyoruz.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= HİZMETLER ============= -->
+<section id="hizmetler">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Hizmetlerimiz</div>
+      <h2 class="h-section">İki sütun, tek standart: <em class="red">premium.</em></h2>
+      <p class="lede" style="margin-top: 1rem;">
+        Her hizmetimizi en üst sınıf ürünlerle, butik bir atölyenin titizliğiyle veriyoruz.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-num">№ 01</div>
+        <h3 class="h-card">Otomobil Cam Filmi</h3>
+        <p class="desc">UV koruması, ısı reddi ve estetik bir bütün halinde. Aracınızın kullanım amacına, beklentinize ve bütçenize göre 5 farklı LLumar serisi.</p>
+        <div class="meta">
+          <span class="tag">ATC</span>
+          <span class="tag">ATR</span>
+          <span class="tag">CTXI</span>
+          <span class="tag">AIR 80</span>
+          <span class="tag">IRX</span>
+        </div>
+        <a href="#fiyat" class="arrow-link">Fiyat Al →</a>
+      </article>
+      <article class="service-card">
+        <div class="service-num">№ 02</div>
+        <h3 class="h-card">Boya Koruma Filmi (PPF)</h3>
+        <p class="desc">Çiziklere, taş darbelerine ve kimyasal lekelere karşı görünmez kalkan. Kendinden iyileşen üst sınıf koruma — LLumar ve STEK markalarıyla.</p>
+        <div class="meta">
+          <span class="tag">LLumar Platinum</span>
+          <span class="tag">LLumar Valor</span>
+          <span class="tag">STEK</span>
+        </div>
+        <a href="#fiyat" class="arrow-link">Fiyat Al →</a>
+      </article>
+    </div>
+
+    <div class="extra-services">
+      <div class="extra-item">
+        <div class="extra-eyebrow">+ Ek Hizmet</div>
+        <div class="extra-body">
+          <div class="extra-name">Cam Çatlağı Tamiri</div>
+          <div class="extra-desc">Ön cam taş izleri ve çatlakların profesyonel onarımı. Cam değişimine alternatif, hızlı ve uygun çözüm.</div>
+        </div>
+        <a href="#fiyat" class="arrow-link">Bilgi Al →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ÜRÜN SERİLERİ ============= -->
+<section class="series" id="seriler">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Cam Filmi Serileri</div>
+      <h2 class="h-section">Her ihtiyaca, <em class="red">doğru film.</em></h2>
+      <p class="lede" style="margin-top: 1rem;">
+        Fiyat-performanstan amiral seriye — ihtiyacınıza ve aracınıza göre özenle seçilmiş LLumar yelpazesi.
+      </p>
+      <p class="swipe-hint">← Yana kaydırın →</p>
+    </div>
+
+    <div class="series-rail">
+      <!-- ATC -->
+      <div class="series-card">
+        <div class="tier">Giriş Seviye</div>
+        <div class="name">ATC</div>
+        <div class="sub">Fiyat-Performans</div>
+        <ul class="features">
+          <li>Dengeli ısı koruması</li>
+          <li>Renkli ve gizlilik veren görünüm</li>
+          <li>Fabrikasyon karartma ile uyumlu (ATC15)</li>
+          <li>Uygun fiyat seviyesi</li>
+        </ul>
+        <div class="badge">Ön + arka eşleme için ideal</div>
+      </div>
+
+      <!-- ATR -->
+      <div class="series-card">
+        <div class="tier">Performans</div>
+        <div class="name">ATR</div>
+        <div class="sub">Metalize Görünüm</div>
+        <ul class="features">
+          <li>Yüksek ısı reddi oranı</li>
+          <li>Karakteristik metalize estetik</li>
+          <li>Uzatılmış garanti süresi</li>
+          <li>ATC üzerinde sınırlı fiyat farkı</li>
+        </ul>
+        <div class="badge">Estetik öncelikli tercih</div>
+      </div>
+
+      <!-- CTXI -->
+      <div class="series-card">
+        <div class="tier">Ara Seri</div>
+        <div class="name">CTXI</div>
+        <div class="sub">Seramik · Özel Sipariş</div>
+        <ul class="features">
+          <li>Seramik teknoloji altyapısı</li>
+          <li>GPS / sinyal geçirgenliği</li>
+          <li>Doğal renk tonu</li>
+          <li>Talep üzerine tedarik edilir</li>
+        </ul>
+        <div class="badge">Randevu öncesi talep edilmeli</div>
+      </div>
+
+      <!-- AIR 80 -->
+      <div class="series-card">
+        <div class="tier">Şeffaf Seri</div>
+        <div class="name">AIR 80</div>
+        <div class="sub">Görünmez Koruma</div>
+        <ul class="features">
+          <li>Neredeyse görünmez şeffaf yapı</li>
+          <li>Yüksek ısı engelleme (koyu serileri aşar)</li>
+          <li>Ön cama uygulanabilir</li>
+          <li>Camın doğal görüş kalitesi</li>
+        </ul>
+        <div class="badge">Karartma istemeyen sürücüler için</div>
+      </div>
+
+      <!-- IRX -->
+      <div class="series-card">
+        <div class="tier">Amiral Seri</div>
+        <div class="name">IRX</div>
+        <div class="sub">Seramik · Üst Sınıf</div>
+        <ul class="features">
+          <li>%59'a varan ısı engelleme</li>
+          <li>Üstün IR (kızılötesi) reddi</li>
+          <li>12 yıl üretici garantisi</li>
+          <li>Yüksek görüş netliği</li>
+        </ul>
+        <div class="badge flag">★ Piyasanın en iyilerinden</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 3rem; font-size: 0.9rem; color: var(--gray); max-width: 720px; line-height: 1.7;">
+      Tüm serilerimiz %99'un üzerinde UV ışınlarını engeller. Aracınız için doğru seri seçimi; kullanım amacınıza, bütçenize ve estetik tercihinize göre uzmanımız tarafından önerilir.
+    </p>
+  </div>
+</section>
+
+<!-- ============= NEDEN LLUMAR MASLAK ============= -->
+<section id="neden">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Neden Biz</div>
+      <h2 class="h-section">Detayda <em class="red">fark yaratırız.</em></h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-num">№ 01</div>
+        <h3 class="h-card">Yetkili Uygulama Merkezi</h3>
+        <p>
+          Resmi distribütör ürünleri ve deneyimli ekibimizle çalışıyoruz. Kaliteyi yalnızca üründe değil, arkasındaki garanti ve işçilik standardında görüyoruz.
+        </p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">№ 02</div>
+        <h3 class="h-card">Butik Atölye Yaklaşımı</h3>
+        <p>
+          Günde sınırlı sayıda araç alıyoruz. Acelesiz, doğru ışıkta, doğru sıcaklıkta uygulama. Sıradan bir servisteki "hızlıca bitirelim" mantığı bize yabancı.
+        </p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">№ 03</div>
+        <h3 class="h-card">Maslak Lokasyonu</h3>
+        <p>
+          Yoğun şehir temposunda zamanın değerini biliyoruz. Merkezi konumumuz sayesinde aracınızı kolayca bırakıp gününüze kesintisiz devam edebilirsiniz.
+        </p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">№ 04</div>
+        <h3 class="h-card">Şeffaf Süreç</h3>
+        <p>
+          Ürün seçiminden uygulamaya kadar süreç açık ilerler. Süreci takip edebilir, yapılan işlemi yakından görebilirsiniz.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= GALERİ ============= -->
+<section class="gallery" id="galeri">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Atölyemizden</div>
+      <h2 class="h-section">Son <em class="red">çalışmalarımız.</em></h2>
+      <p class="lede" style="margin-top: 1rem;">
+        Atölyemizden geçen araçlar — her biri kendi hikayesinin baş kahramanı.
+      </p>
+    </div>
+
+    <div class="gallery-rail">
+      <div class="gallery-card">
+        <div class="gallery-img"><span class="placeholder">Görsel · 911 GT3</span></div>
+        <div class="gallery-info">
+          <div class="car">Porsche 911 GT3</div>
+          <div class="service">PPF Platinum + IRX</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img"><span class="placeholder">Görsel · G63 AMG</span></div>
+        <div class="gallery-info">
+          <div class="car">Mercedes-AMG G 63</div>
+          <div class="service">IRX Seramik Set</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img"><span class="placeholder">Görsel · X5 M</span></div>
+        <div class="gallery-info">
+          <div class="car">BMW X5 M Competition</div>
+          <div class="service">PPF + AIR 80 Ön Cam</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img"><span class="placeholder">Görsel · Tesla Plaid</span></div>
+        <div class="gallery-info">
+          <div class="car">Tesla Model S Plaid</div>
+          <div class="service">IRX Tam Set</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img"><span class="placeholder">Görsel · Range Rover</span></div>
+        <div class="gallery-info">
+          <div class="car">Range Rover Autobiography</div>
+          <div class="service">PPF Platinum Tam Kasa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FORM ============= -->
+<section class="form-section" id="fiyat">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom: 2rem;">
+      <div class="eyebrow">— Fiyat Bilgisi</div>
+      <h2 class="h-section">Aracınız için <em class="red">özel teklif.</em></h2>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-side reveal">
+        <p class="pitch">
+          LLumar uygulamaları aracınızın markasına, modeline, yıllarına ve tercih ettiğiniz seriye göre özelleştirilir. Standart bir liste fiyatı sunmuyoruz — her teklifimiz size özel hazırlanıyor.
+        </p>
+        <p class="pitch">
+          Aşağıdaki formu doldurun, <strong>en kısa sürede</strong> uzmanımız sizi arar. WhatsApp ile fotoğraf paylaşabilir, atölyemizi ziyaret edebilir ya da doğrudan telefonla görüşebilirsiniz.
+        </p>
+
+        <div class="quote-card">
+          <div class="text">
+            "Aracımı sabah teslim ettim, akşam aldım. Cayenne'imin görüntüsü ilk günkünden iyi."
+          </div>
+          <div class="author">— A.B., Cayenne Turbo Sahibi</div>
+        </div>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="label">Sabit Hat</div>
+            <div class="value"><a href="tel:+902122769356">0 (212) 276 93 56</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">WhatsApp · Mobil</div>
+            <div class="value"><a href="tel:+905073330703">0 (507) 333 07 03</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Çalışma Saatleri</div>
+            <div class="value">Pzt — Cum · 09:00 — 19:00<br/>Cmt · 09:00 — 17:00</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Konum</div>
+            <div class="value"><a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">Maslak Mah., Sarıyer · İstanbul →</a></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="quote-form" onsubmit="event.preventDefault(); alert('Demo: Form gönderildi. Gerçek sitede yetkili sizi en kısa sürede arar.');">
+        <div class="form-title">Bilgi al</div>
+        <div class="form-subtitle">Bize aracınızı anlatın, biz size en doğru çözümü sunalım. Tüm bilgiler gizli tutulur.</div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Ad Soyad</label>
+            <input type="text" placeholder="Adınız" required />
+          </div>
+          <div class="form-field">
+            <label>Telefon</label>
+            <input type="tel" placeholder="+90 5__ ___ __ __" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>E-posta</label>
+          <input type="email" placeholder="ornek@mail.com" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Araç Markası</label>
+            <select required>
+              <option value="">Seçiniz</option>
+              <option>Porsche</option>
+              <option>Mercedes-Benz</option>
+              <option>BMW</option>
+              <option>Audi</option>
+              <option>Range Rover</option>
+              <option>Tesla</option>
+              <option>Lamborghini</option>
+              <option>Bentley</option>
+              <option>Ferrari</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Model & Yıl</label>
+            <input type="text" placeholder="Cayenne 2024" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>İlgilendiğiniz Hizmet</label>
+        </div>
+        <div class="form-checkboxes" id="checkboxes">
+          <label class="check-pill"><input type="checkbox" /> Cam Filmi (Tam Set)</label>
+          <label class="check-pill"><input type="checkbox" /> Sadece Ön Cam</label>
+          <label class="check-pill"><input type="checkbox" /> PPF (Boya Koruma)</label>
+          <label class="check-pill"><input type="checkbox" /> Henüz Karar Vermedim</label>
+        </div>
+
+        <div class="form-field">
+          <label>Notlar (isteğe bağlı)</label>
+          <textarea placeholder="Tercih ettiğiniz seri, randevu zamanı veya soru..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Bilgi Talebi Gönder</button>
+        <div class="form-note">Bilgileriniz KVKK kapsamında korunur. En kısa sürede sizi ararız.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SSS ============= -->
+<section class="faq" id="sss">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Sıkça Sorulan Sorular</div>
+      <h2 class="h-section">Aklınızdaki <em class="red">soruların yanıtları.</em></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Türkiye'de cam filmi mevzuatı nasıl?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>Türkiye'de ön ve sürücü-yan camlarda görüş geçirgenliği ile ilgili sınırlar bulunmaktadır. Aracınızın kullanım amacı ve tercih ettiğiniz görünüm doğrultusunda, uzmanımız uygun seriyi sizinle birlikte değerlendirir. AIR 80 gibi şeffaf serilerimiz koyulaşma istemeyenler için ısı ve UV koruması açısından güçlü bir tercih sunar.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">PPF ile cam filmi arasındaki fark nedir?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>Cam filmi, camlarınıza uygulanır ve ısı, UV ve görüş işlevlerini yerine getirir. PPF (Paint Protection Film) ise aracınızın boyalı yüzeylerine uygulanan görünmez bir kaplamadır; çiziklere, taş darbelerine ve kimyasal lekelere karşı koruma sağlar. İkisi farklı amaçlara hizmet eder, müşterilerimizin önemli bir bölümü her ikisini birden tercih eder.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Hangi seriyi seçmeliyim?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>Bütçeniz, beklediğiniz ısı koruma seviyesi ve estetik tercihiniz seçimi belirler. ATC, fiyat-performans tarafında dengeli bir başlangıç; ATR metalize görünüm ve yükseltilmiş garanti sunar; AIR 80 şeffaflıktan vazgeçmek istemeyenler için ideal; IRX ise %59'a varan ısı engelleme ve 12 yıl garanti ile amiral seridir. Uzmanımız aracınızı ve kullanımınızı dinleyerek doğru seriyi önerir.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Uygulama ne kadar sürüyor?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>Standart cam filmi uygulaması (5 cam) yaklaşık 4-5 saat sürer. Tam kasa PPF uygulaması 2-4 gün arası alabilir. Sabah teslim eder, hizmet bittiğinde sizi arayarak teslim alabileceğinizi bildiririz.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Garanti süresi ne kadar?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>LLumar üretici garantisi seri ve uygulamaya göre değişir. Otomobil cam filmlerimizde garanti süreleri 5 yıldan başlayıp, IRX serisinde 12 yıla kadar çıkar. Tüm uygulamalarımız sertifikalı üretici garanti belgesi ile teslim edilir.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Fiyatlar neye göre belirleniyor?<span class="icon"></span></div>
+        <div class="faq-a">
+          <p>Aracınızın markası, modeli, yılı, cam yapısı (panoramik tavan vb.) ve seçtiğiniz LLumar serisine göre değişir. Standart bir liste fiyatımız yok — her teklifimiz size özeldir. Bilgi formunu doldurduğunuzda en kısa sürede sizi arayıp net fiyat veriyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer id="iletisim">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="llumar-logo" aria-label="LLumar Maslak">
+          <svg class="mark" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 8 L42 8 L42 22 L28 22 L28 50 L52 50 L52 8 L66 8 L66 64 L14 64 Z" fill="#D9202A"/>
+            <path d="M14 64 L66 64 L72 72 L8 72 Z" fill="#D9202A"/>
+          </svg>
+          <span class="wordmark">
+            <span class="name">LLumar</span>
+            <span class="loc">Maslak</span>
+          </span>
+        </a>
+        <p>
+          LLumar yetkili uygulama atölyesi. Premium cam filmi ve boya koruma filmi (PPF) hizmetleri. Maslak, İstanbul.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Hizmetler</h4>
+        <ul>
+          <li><a href="#hizmetler">Otomobil Cam Filmi</a></li>
+          <li><a href="#hizmetler">Boya Koruma Filmi</a></li>
+          <li><a href="#seriler">Ürün Serileri</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal</h4>
+        <ul>
+          <li><a href="#hikaye">Marka Hikayesi</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+          <li><a href="#fiyat">Fiyat Bilgisi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li>0 (212) 276 93 56</li>
+          <li>0 (507) 333 07 03</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">Maslak Mah., Sarıyer<br/>Haritada Gör →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="copy">© 2026 LLumar Maslak · Tüm hakları saklıdır · KVKK · Gizlilik</div>
+      <div class="social">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/905073330703" class="wa-float" aria-label="WhatsApp ile iletişim">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-text">WhatsApp</span>
+</a>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+  const overlay = document.getElementById('menuOverlay');
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    menuToggle.classList.remove('open');
+    overlay.classList.remove('show');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  function openMenu() {
+    menu.classList.add('open');
+    menuToggle.classList.add('open');
+    overlay.classList.add('show');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  menuToggle.addEventListener('click', () => {
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+  });
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Checkbox pill active state
+  document.querySelectorAll('.check-pill input').forEach(cb => {
+    cb.addEventListener('change', e => {
+      e.target.closest('.check-pill').classList.toggle('active', e.target.checked);
+    });
+  });
+</script>
+
+</body>
+</html>
