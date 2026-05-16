@@ -1076,20 +1076,55 @@
     background: var(--black);
     border: 1px solid var(--line);
   }
+  /* Yıldızlar: arka katman gri "boş", önde kırmızı "dolu" katman
+     puanın yüzdesi kadar (4,7/5 = %94) genişlikte. */
   .reviews-summary .stars {
+    position: relative;
+    display: inline-block;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    color: var(--gray-2);
+  }
+  .reviews-summary .stars .stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;        /* 4,7 / 5 */
+    overflow: hidden;
+    white-space: nowrap;
     color: var(--red);
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
   }
   .reviews-summary .meta {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--gray);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
-  .reviews-summary .meta strong {
+  .reviews-summary .meta .score {
     color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0;
+  }
+  .reviews-summary .meta .count {
+    color: var(--off-white);
     font-weight: 600;
-    font-size: 0.95rem;
+  }
+  .reviews-summary .meta .sep {
+    color: var(--gray-2);
+  }
+  @media (max-width: 600px) {
+    .reviews-summary {
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      padding: 0.75rem 1rem;
+    }
+    .reviews-summary .stars { font-size: 1.05rem; }
+    .reviews-summary .meta .score { font-size: 1rem; }
   }
   .reviews-summary .google-badge {
     font-size: 0.7rem;
@@ -2284,10 +2319,19 @@
     <div class="section-head reveal">
       <div class="eyebrow">— Müşteri Yorumları</div>
       <h2 class="h-section">Sözü <em class="red">onlara bırakalım.</em></h2>
-      <div class="reviews-summary">
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="meta"><strong>5.0</strong> ortalama</span>
-        <span class="google-badge">Google Yorumları</span>
+      <div class="reviews-summary" aria-label="Google puanı: 4,7 üzerinden 5 yıldız, 96 yorum">
+        <span class="stars" role="img" aria-label="4,7 / 5 yıldız">
+          <span aria-hidden="true">★★★★★</span>
+          <span class="stars-fill" aria-hidden="true">★★★★★</span>
+        </span>
+        <span class="meta">
+          <strong class="score">4,7</strong>
+          <span>/ 5</span>
+          <span class="sep">·</span>
+          <strong class="count">96</strong>
+          <span>yorum</span>
+        </span>
+        <span class="google-badge">Google</span>
       </div>
     </div>
   </div>
