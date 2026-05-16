@@ -10,9 +10,10 @@ Aşağıdaki dosya adlarını **birebir** kullanın (Türkçe karakter yok, kü�
 |---|---|
 | `ferrari-purosangue.jpg` | Ferrari Purosangue |
 | `bmw-m2-competition.jpg` | BMW M2 Competition |
-| `porsche-911-gt3.jpg` | Porsche 911 GT3 *(yakında)* |
-| `mercedes-g63-amg.jpg` | Mercedes-AMG G 63 *(yakında)* |
-| `range-rover-autobiography.jpg` | Range Rover Autobiography *(yakında)* |
+| `mercedes-amg-gtr.jpg` | Mercedes-AMG GT R (yeşil) |
+| `chevrolet-corvette.jpg` | Chevrolet Corvette (kırmızı) |
+| `chevrolet-silverado.jpg` | Chevrolet Silverado (siyah) |
+| `tesla-model-y.jpg` | Tesla Model Y (mat gri) |
 
 ## Boyut & Format
 
