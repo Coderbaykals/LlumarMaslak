@@ -17,7 +17,7 @@ Maslak, İstanbul'da yetkili LLumar uygulama atölyesinin resmi web sitesi.
 - Sabit: +90 212 276 93 56
 - WhatsApp / Mobil: +90 507 333 07 03
 - Pzt – Cum 09:00 – 19:00 · Cmt 09:00 – 17:00
-- Maslak Mahallesi, Sarıyer / İstanbul
+- Maslak, 22. Sk. Atatürk Oto Sanayi Sitesi 2. Kısım, No:765, 34398 Sarıyer / İstanbul
 
 ## Stack
 
