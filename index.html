@@ -567,10 +567,35 @@
       padding: 0.3rem 0.6rem 0 0;
     }
   }
-  @media (max-width: 480px) {
-    .story-side .stat-number { font-size: 1.45rem; }
-    .story-side .stat-label { font-size: 0.55rem; }
-    .story-side { gap: 0.6rem; }
+  @media (max-width: 600px) {
+    .story-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      padding-bottom: 1.5rem;
+    }
+    .story-side > .eyebrow {
+      grid-column: auto;
+      margin-bottom: 0.25rem !important;
+    }
+    .story-side .stat {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      text-align: left;
+      padding: 0;
+    }
+    .story-side .stat-number {
+      font-size: 1.9rem;
+      margin-bottom: 0;
+      flex-shrink: 0;
+      min-width: 82px;
+    }
+    .story-side .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      line-height: 1.35;
+    }
   }
   .story-side {
     position: sticky;
@@ -1711,6 +1736,23 @@
     text-transform: uppercase;
     font-weight: 500;
   }
+  .footer-credit {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .footer-credit span { opacity: 0.6; }
+  .footer-credit strong {
+    color: var(--red);
+    font-weight: 600;
+    font-family: var(--sans);
+    margin-left: 0.4rem;
+  }
 
   /* ============= ANIMATIONS ============= */
   @keyframes fadeInUp {
@@ -2304,13 +2346,6 @@
           Aşağıdaki formu doldurun, <strong>en kısa sürede</strong> uzmanımız sizi arar. WhatsApp ile fotoğraf paylaşabilir, atölyemizi ziyaret edebilir ya da doğrudan telefonla görüşebilirsiniz.
         </p>
 
-        <div class="quote-card">
-          <div class="text">
-            "Aracımı sabah teslim ettim, akşam aldım. Cayenne'imin görüntüsü ilk günkünden iyi."
-          </div>
-          <div class="author">— A.B., Cayenne Turbo Sahibi</div>
-        </div>
-
         <div class="contact-info">
           <div class="contact-item">
             <div class="label">Sabit Hat</div>
@@ -2326,7 +2361,7 @@
           </div>
           <div class="contact-item">
             <div class="label">Konum</div>
-            <div class="value"><a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">Maslak Mah., Sarıyer · İstanbul →</a></div>
+            <div class="value"><a href="https://www.google.com/maps/search/?api=1&amp;query=Atatürk+Oto+Sanayi+Sitesi+2.+Kısım+22.+Sokak+No+765+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">22. Sk. No:765, Atatürk Oto Sanayi 2. Kısım<br/>Maslak · 34398 Sarıyer / İstanbul →</a></div>
           </div>
         </div>
       </div>
@@ -2510,17 +2545,25 @@
         <ul>
           <li>0 (212) 276 93 56</li>
           <li>0 (507) 333 07 03</li>
-          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">Maslak Mah., Sarıyer<br/>Haritada Gör →</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Atatürk+Oto+Sanayi+Sitesi+2.+Kısım+22.+Sokak+No+765+Maslak+Sarıyer+İstanbul" target="_blank" rel="noopener">22. Sk. No:765<br/>Atatürk Oto Sanayi · Maslak<br/>34398 Sarıyer / İstanbul →</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="copy">© 2026 BKFTEK Otomotiv San. Tic. Ltd. Şti. — LLumar Maslak · <a href="kvkk.html">KVKK Aydınlatma</a> · <a href="gizlilik.html">Gizlilik</a> · <a href="cerez-politikasi.html">Çerez Politikası</a></div>
+      <div class="copy">
+        © BKFTEK Otomotiv 2020. Tüm hakları saklıdır. ·
+        <a href="kvkk.html">KVKK Aydınlatma</a> ·
+        <a href="gizlilik.html">Gizlilik</a> ·
+        <a href="cerez-politikasi.html">Çerez Politikası</a>
+      </div>
       <div class="social">
         <a href="#" aria-label="Instagram">Instagram</a>
         <a href="#" aria-label="TikTok">TikTok</a>
         <a href="#" aria-label="Facebook">Facebook</a>
       </div>
+    </div>
+    <div class="footer-credit">
+      <span>Website by</span> <strong>LLumar Maslak</strong>
     </div>
   </div>
 </footer>
@@ -2723,10 +2766,10 @@
   "paymentAccepted": "Cash, Credit Card",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Maslak Mahallesi",
+    "streetAddress": "Maslak, 22. Sk. Atatürk Oto Sanayi Sitesi 2. Kısım, No: 765",
     "addressLocality": "Sarıyer",
     "addressRegion": "İstanbul",
-    "postalCode": "34485",
+    "postalCode": "34398",
     "addressCountry": "TR"
   },
   "geo": {
