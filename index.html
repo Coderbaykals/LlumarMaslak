@@ -1041,6 +1041,7 @@
     background: var(--black-2);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
   .reviews-summary {
     display: inline-flex;
@@ -1076,15 +1077,36 @@
     padding-left: 1.25rem;
   }
 
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+  /* === Yatay kayan carousel === */
+  .reviews-marquee {
+    position: relative;
     margin-top: 3rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
   }
-  @media (max-width: 900px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) {
-    .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .reviews-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: reviewsMarquee 90s linear infinite;
+    will-change: transform;
+  }
+  .reviews-marquee:hover .reviews-track,
+  .reviews-marquee:focus-within .reviews-track {
+    animation-play-state: paused;
+  }
+  @keyframes reviewsMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-track { animation: none; }
+    .reviews-marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+              mask-image: none;
+    }
   }
 
   .review-card {
@@ -1098,6 +1120,15 @@
     color: inherit;
     position: relative;
     overflow: hidden;
+    flex: 0 0 380px;
+    min-height: 290px;
+  }
+  @media (max-width: 600px) {
+    .review-card {
+      flex: 0 0 300px;
+      min-height: 270px;
+      padding: 1.5rem 1.35rem;
+    }
   }
   .review-card:hover {
     border-color: var(--red-deep);
@@ -1117,15 +1148,16 @@
 
   .review-head {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.85rem;
     margin-bottom: 1.2rem;
   }
   .review-stars {
     color: var(--red);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     letter-spacing: 0.18em;
     line-height: 1;
+    margin-top: 0.2rem;
   }
   .review-author {
     flex: 1;
@@ -1133,34 +1165,42 @@
   }
   .review-author .name {
     color: var(--white);
-    font-weight: 500;
-    font-size: 0.95rem;
-    line-height: 1.2;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.25;
     margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
   }
   .review-author .date {
     color: var(--gray);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
   .review-quote {
-    font-family: var(--serif);
-    font-style: italic;
+    font-family: var(--sans);
+    font-style: normal;
     color: var(--off-white);
-    font-size: 1rem;
-    line-height: 1.55;
+    font-size: 1.05rem;
+    line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 1.2rem;
     position: relative;
     padding-left: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .review-quote::before {
     content: '"';
     position: absolute;
     left: 0;
-    top: -0.4rem;
+    top: -0.5rem;
     color: var(--red);
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-family: var(--serif);
     line-height: 1;
   }
@@ -2210,10 +2250,10 @@
 
 <!-- ============= YORUMLAR ============= -->
 <!--
-  Müşteri yorumları. 6 kart, her biri gerçek Google review URL'sine bağlanır.
-  Google sayfaları JS-rendered olduğu için yorum metni otomatik çekilemedi —
-  isim / tarih / quote alanları placeholder; her kart için yorum metnini
-  ilgili Google linki üzerinden kopyalayıp yerine yapıştırmak gerekir.
+  Müşteri yorumları — gerçek Google yorum metinleri.
+  Yatay kayan carousel (CSS marquee). 12 yorum × 2 kez yazılır = 24 kart;
+  ikinci yarı aria-hidden="true" ile screen reader'lardan gizlenir.
+  Hover'da animasyon durur, reduced-motion tercih edenlerde yatay scroll'a düşer.
 -->
 <section class="reviews" id="yorumlar">
   <div class="container">
@@ -2226,93 +2266,369 @@
         <span class="google-badge">Google Yorumları</span>
       </div>
     </div>
+  </div>
 
-    <div class="reviews-grid">
+  <div class="reviews-marquee" aria-label="Google yorumları, otomatik kayan liste">
+    <div class="reviews-track">
 
-      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <!-- ============ Set 1 (görünür) ============ -->
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Efemir34 — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Mert K.</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">Efemir34</div>
+            <div class="date">2 ay önce</div>
           </div>
         </div>
-        <div class="review-quote">Detaya verdikleri özen başka bir seviyede. Aracımı teslim ederken zaten sezmiştim, sonuç beklentimi aştı.</div>
+        <div class="review-quote">Yeni aldığım aracıma benden önceki sahibinin yaptırmış olduğu arka bagaj kapağı cam filmini profesyonelce, rezistansa zarar vermeden buharla söküm yapan LLumar Maslak'a çok teşekkür ederim.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
         </div>
       </a>
 
-      <a href="https://maps.app.goo.gl/zEhD6mWuW7vsRJuk9" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Sercan Direk — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Ahmet Y.</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">Sercan Direk</div>
+            <div class="date">2 yıl önce</div>
           </div>
         </div>
-        <div class="review-quote">İşçilik üst düzey. Sabah teslim ettim, akşam aldım. Söz verdikleri saatte hazırdı.</div>
+        <div class="review-quote">Osman bey ve ekibi gerçekten çok profesyonel. 0 km Seat Ateca aracıma cam filmi taktırdım; ilgileri ve müşteri memnuniyeti çok fazlaydı. En ufak ayrıntıya dikkat ettiler. İşçilik çok iyiydi.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
         </div>
       </a>
 
-      <a href="https://maps.app.goo.gl/QzxrFcbie6PzYoKd8" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Muhammed Şen — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Osman Usta — Müşteri Yorumu</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">Muhammed Şen</div>
+            <div class="date">1 yıl önce</div>
           </div>
         </div>
-        <div class="review-quote">LLumar Maslak'tan aldığım hizmet hem ürün kalitesi hem işçilik açısından kusursuzdu — Maslak'ta bu kalite tek burada var.</div>
+        <div class="review-quote">Tam İstanbul'da deprem olduğu gün aracımı Osman abiye teslim ettim. Olanlara rağmen hiçbir şeyin aksamasına izin vermemekle kalmayıp, 1 yaşındaki bebeğimi ve ailemi aracımızın işi bitene kadar misafir ağırlar gibi ağırladı. İşini iyi yapan, kaliteli bir insan. İşçiliği harika.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
         </div>
       </a>
 
-      <a href="https://maps.app.goo.gl/mq2oTd8XaMw4d98eA" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Mustafa Altundal — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Selin D.</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">Mustafa Altundal</div>
+            <div class="date">1 yıl önce</div>
           </div>
         </div>
-        <div class="review-quote">PPF uygulaması harika oldu. Boyaya zarar verecek her şeye karşı görünmez bir kalkan — şeffaflığı da rahatsız etmiyor.</div>
+        <div class="review-quote">LLumar Maslak'a aracımızı kaplattırmak için gittiğimizde Osman Usta ile tanıştık. Her sorumuza sabırla cevap verdi, ürünleri bizzat kutusundan çıkartarak gösterdi. İşçiliği de insanlığı da kusursuz; gözünüz kapalı aracınızı emanet edebileceğiniz nadir esnaflardan.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
         </div>
       </a>
 
-      <a href="https://maps.app.goo.gl/qENpn47C7JGtEUuS6" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="İlker — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Burak T.</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">İlker</div>
+            <div class="date">3 yıl önce</div>
           </div>
         </div>
-        <div class="review-quote">Cam filmi sonrası araç içi sıcaklık ciddi düştü, görüş kalitesi de mükemmel. IRX serisi parasının hakkını veriyor.</div>
+        <div class="review-quote">Doğrusunu söylemek gerekirse buradaki yorumlar vasıtasıyla kendilerine gittim. Aracıma 2 ön kapı cam filmi montajı oldu. Başta Osman Bey olmak üzere tüm ekibe çok teşekkür ederim. Önerileri sayesinde cam filmi tam istediğim gibi oldu. Temiz, kaliteli işçilik; hızlı ve güvenilir hizmet.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
         </div>
       </a>
 
-      <a href="https://maps.app.goo.gl/kp8WDpgnW3WMeZHU7" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="İsa Yıldırım — Google yorumu">
         <div class="review-head">
           <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
           <div class="review-author">
-            <div class="name">Emre A.</div>
-            <div class="date">Google'da yorum</div>
+            <div class="name">İsa Yıldırım</div>
+            <div class="date">2 yıl önce</div>
           </div>
         </div>
-        <div class="review-quote">Şeffaf bir süreç, sürpriz fiyat yok. Aracımı bıraktığım gibi, hatta daha iyi şekilde teslim aldım.</div>
+        <div class="review-quote">Bütün araçlarıma cam filmi çektirdim, ilk defa LLumar yaptırdım. Osman Usta ve ekibiyle 4 saat boyunca zaman geçirdim; bütün sorularıma içtenlikle cevap verdiler. Sanayide bulabileceğiniz nadir esnaflardan.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Volkan Acar — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Volkan Acar</div>
+            <div class="date">1 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Aracımın ön camına AIR 80, ön kapı camlarına ATR 15 cam filmi uygulaması yaptırdım. İşlem 3 saat sürdü. Büyük bir titizlikle profesyonelce çalışıyorlar; LLumar garanti kartını teslim ettiler. Başka bir araca PPF kaplama yapılıyordu, onu da bolca gözlemledim — muazzam bir işçilik. Tavsiye ederim.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Kubilay Taş — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Kubilay Taş</div>
+            <div class="date">7 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Bu işi gerçekten iyi yapıyorlar, öyle merdiven altı yerlerden değil. Çoğu yerde camlara sökmeden yapıştırıp 2 saatte teslim ediyorlar, haliyle işçilik kötü oluyor. Bu işte malzeme kadar işçilik de önemli. Ustamın ellerine sağlık; şiddetle tavsiye edilir.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Mert Kaya — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Mert Kaya</div>
+            <div class="date">4 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Zamanında, kaliteli ve temiz işçilikle aracımı teslim aldım. LLumar kalitesi kendini zaten belli ediyor; fakat işçilik ve zamanında teslimat da çok değerli. Elinize sağlık.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Anıl Yöndem — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Anıl Yöndem</div>
+            <div class="date">3 hafta önce</div>
+          </div>
+        </div>
+        <div class="review-quote">İnternet üzerinden buldum, Kadir diye bir kardeşimiz ilgilendi. Karşılaması, konuşması, iletişimi çok güzel; genç bir arkadaşımız. Memnun kaldım, çok teşekkürler. Elinize, emeğinize sağlık.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Efecan Mık — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Efecan Mık</div>
+            <div class="date">6 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Cam çatlağı onarımı için servis aldım. Sonuç memnuniyet vericiydi; resimdeki sorun en minimal haline indirildi.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Serkan Soylu — Google yorumu">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Serkan Soylu</div>
+            <div class="date">4 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Kalite, deneyim, tecrübe ve güvenilir.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <!-- ============ Set 2 (seamless loop için aynı 12 yorum, screen reader'dan gizli) ============ -->
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Efemir34</div>
+            <div class="date">2 ay önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Yeni aldığım aracıma benden önceki sahibinin yaptırmış olduğu arka bagaj kapağı cam filmini profesyonelce, rezistansa zarar vermeden buharla söküm yapan LLumar Maslak'a çok teşekkür ederim.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Sercan Direk</div>
+            <div class="date">2 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Osman bey ve ekibi gerçekten çok profesyonel. 0 km Seat Ateca aracıma cam filmi taktırdım; ilgileri ve müşteri memnuniyeti çok fazlaydı. En ufak ayrıntıya dikkat ettiler. İşçilik çok iyiydi.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Muhammed Şen</div>
+            <div class="date">1 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Tam İstanbul'da deprem olduğu gün aracımı Osman abiye teslim ettim. Olanlara rağmen hiçbir şeyin aksamasına izin vermemekle kalmayıp, 1 yaşındaki bebeğimi ve ailemi aracımızın işi bitene kadar misafir ağırlar gibi ağırladı. İşini iyi yapan, kaliteli bir insan. İşçiliği harika.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Mustafa Altundal</div>
+            <div class="date">1 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">LLumar Maslak'a aracımızı kaplattırmak için gittiğimizde Osman Usta ile tanıştık. Her sorumuza sabırla cevap verdi, ürünleri bizzat kutusundan çıkartarak gösterdi. İşçiliği de insanlığı da kusursuz; gözünüz kapalı aracınızı emanet edebileceğiniz nadir esnaflardan.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">İlker</div>
+            <div class="date">3 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Doğrusunu söylemek gerekirse buradaki yorumlar vasıtasıyla kendilerine gittim. Aracıma 2 ön kapı cam filmi montajı oldu. Başta Osman Bey olmak üzere tüm ekibe çok teşekkür ederim. Önerileri sayesinde cam filmi tam istediğim gibi oldu. Temiz, kaliteli işçilik; hızlı ve güvenilir hizmet.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">İsa Yıldırım</div>
+            <div class="date">2 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Bütün araçlarıma cam filmi çektirdim, ilk defa LLumar yaptırdım. Osman Usta ve ekibiyle 4 saat boyunca zaman geçirdim; bütün sorularıma içtenlikle cevap verdiler. Sanayide bulabileceğiniz nadir esnaflardan.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Volkan Acar</div>
+            <div class="date">1 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Aracımın ön camına AIR 80, ön kapı camlarına ATR 15 cam filmi uygulaması yaptırdım. İşlem 3 saat sürdü. Büyük bir titizlikle profesyonelce çalışıyorlar; LLumar garanti kartını teslim ettiler. Başka bir araca PPF kaplama yapılıyordu, onu da bolca gözlemledim — muazzam bir işçilik. Tavsiye ederim.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Kubilay Taş</div>
+            <div class="date">7 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Bu işi gerçekten iyi yapıyorlar, öyle merdiven altı yerlerden değil. Çoğu yerde camlara sökmeden yapıştırıp 2 saatte teslim ediyorlar, haliyle işçilik kötü oluyor. Bu işte malzeme kadar işçilik de önemli. Ustamın ellerine sağlık; şiddetle tavsiye edilir.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Mert Kaya</div>
+            <div class="date">4 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Zamanında, kaliteli ve temiz işçilikle aracımı teslim aldım. LLumar kalitesi kendini zaten belli ediyor; fakat işçilik ve zamanında teslimat da çok değerli. Elinize sağlık.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Anıl Yöndem</div>
+            <div class="date">3 hafta önce</div>
+          </div>
+        </div>
+        <div class="review-quote">İnternet üzerinden buldum, Kadir diye bir kardeşimiz ilgilendi. Karşılaması, konuşması, iletişimi çok güzel; genç bir arkadaşımız. Memnun kaldım, çok teşekkürler. Elinize, emeğinize sağlık.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Efecan Mık</div>
+            <div class="date">6 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Cam çatlağı onarımı için servis aldım. Sonuç memnuniyet vericiydi; resimdeki sorun en minimal haline indirildi.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-hidden="true" tabindex="-1">
+        <div class="review-head">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Serkan Soylu</div>
+            <div class="date">4 yıl önce</div>
+          </div>
+        </div>
+        <div class="review-quote">Kalite, deneyim, tecrübe ve güvenilir.</div>
         <div class="review-foot">
           <span>Google'da Oku →</span>
           <span class="google-mark">★ Google</span>
@@ -2320,7 +2636,9 @@
       </a>
 
     </div>
+  </div>
 
+  <div class="container">
     <div class="reviews-cta">
       <a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak" target="_blank" rel="noopener">
         Tüm Yorumları Google'da Gör →
