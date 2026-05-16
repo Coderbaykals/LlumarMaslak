@@ -523,6 +523,8 @@
   .section-head h2 { margin-bottom: 1.5rem; color: var(--white); }
 
   /* ============= MARKA HİKAYESİ ============= */
+  /* Base kurallar (mobile-first değil ama media query'lerin ÖNÜNDE olmalı
+     ki responsive override'lar source-order kazansın). */
   .story {
     background: var(--black-2);
     border-top: 1px solid var(--line);
@@ -532,70 +534,6 @@
     grid-template-columns: 1fr 1.2fr;
     gap: 5rem;
     align-items: start;
-  }
-  @media (max-width: 900px) {
-    .story-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .story-side {
-      position: static;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .story-side > .eyebrow {
-      grid-column: 1 / -1;
-      margin-bottom: 0.25rem !important;
-    }
-    .story-side .stat {
-      margin-bottom: 0;
-      display: block;
-      text-align: center;
-    }
-    .story-side .stat-number {
-      font-size: clamp(1.6rem, 5.5vw, 2.4rem);
-      margin-bottom: 0.4rem;
-      line-height: 1;
-    }
-    .story-side .stat-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      line-height: 1.35;
-    }
-    .story-text p:first-of-type::first-letter {
-      font-size: 3rem;
-      padding: 0.3rem 0.6rem 0 0;
-    }
-  }
-  @media (max-width: 600px) {
-    .story-side {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      padding-bottom: 1.5rem;
-    }
-    .story-side > .eyebrow {
-      grid-column: auto;
-      margin-bottom: 0.25rem !important;
-    }
-    .story-side .stat {
-      display: flex;
-      align-items: baseline;
-      gap: 1.25rem;
-      text-align: left;
-      padding: 0;
-    }
-    .story-side .stat-number {
-      font-size: 1.9rem;
-      margin-bottom: 0;
-      flex-shrink: 0;
-      min-width: 82px;
-    }
-    .story-side .stat-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      line-height: 1.35;
-    }
   }
   .story-side {
     position: sticky;
@@ -634,6 +572,92 @@
     padding: 0.4rem 0.8rem 0 0;
     color: var(--red);
     font-weight: 400;
+  }
+
+  /* === Responsive: tablet ve mobil === */
+  @media (max-width: 900px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    /* KRITIK: sticky'yi kapat, yoksa istatistikler ekrana yapışıp
+       altındaki uzun metnin üzerine biner. */
+    .story-side {
+      position: static;
+      top: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .story-side > .eyebrow {
+      grid-column: 1 / -1;
+      margin-bottom: 0.25rem !important;
+    }
+    .story-side .stat {
+      margin-bottom: 0;
+      display: block;
+      text-align: center;
+    }
+    .story-side .stat-number {
+      font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+    .story-side .stat-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      line-height: 1.35;
+    }
+    .story-text {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .story-text h2 { margin-bottom: 1.5rem; }
+    .story-text p { margin-bottom: 1.25rem; }
+    .story-text p:first-of-type::first-letter {
+      font-size: 3rem;
+      padding: 0.3rem 0.6rem 0 0;
+    }
+  }
+  @media (max-width: 600px) {
+    .story-grid { gap: 2rem; }
+    .story-side {
+      position: static;
+      top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      padding-bottom: 1.5rem;
+    }
+    .story-side > .eyebrow {
+      grid-column: auto;
+      margin-bottom: 0.25rem !important;
+    }
+    .story-side .stat {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      text-align: left;
+      padding: 0;
+    }
+    .story-side .stat-number {
+      font-size: 1.9rem;
+      margin-bottom: 0;
+      flex-shrink: 0;
+      min-width: 82px;
+    }
+    .story-side .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      line-height: 1.35;
+    }
+    .story-text { font-size: 0.98rem; line-height: 1.7; }
+    .story-text p:first-of-type::first-letter {
+      font-size: 2.6rem;
+      padding: 0.25rem 0.55rem 0 0;
+    }
   }
 
   /* ============= HİZMETLER ============= */
