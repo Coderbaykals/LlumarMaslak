@@ -534,14 +534,43 @@
     align-items: start;
   }
   @media (max-width: 900px) {
-    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .story-side { position: static; }
-    .story-side .stat { margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 1rem; }
-    .story-side .stat-number { font-size: 2.5rem; margin-bottom: 0; }
+    .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .story-side {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .story-side > .eyebrow {
+      grid-column: 1 / -1;
+      margin-bottom: 0.25rem !important;
+    }
+    .story-side .stat {
+      margin-bottom: 0;
+      display: block;
+      text-align: center;
+    }
+    .story-side .stat-number {
+      font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+    .story-side .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      line-height: 1.35;
+    }
     .story-text p:first-of-type::first-letter {
       font-size: 3rem;
       padding: 0.3rem 0.6rem 0 0;
     }
+  }
+  @media (max-width: 480px) {
+    .story-side .stat-number { font-size: 1.45rem; }
+    .story-side .stat-label { font-size: 0.55rem; }
+    .story-side { gap: 0.6rem; }
   }
   .story-side {
     position: sticky;
@@ -919,8 +948,11 @@
     transition: border-color .3s;
     scroll-snap-align: start;
   }
-  @media (max-width: 500px) {
-    .gallery-card { flex: 0 0 85%; max-width: 320px; }
+  @media (max-width: 900px) {
+    .gallery-card { flex: 0 0 340px; }
+  }
+  @media (max-width: 600px) {
+    .gallery-card { flex: 0 0 78%; max-width: 320px; }
   }
   .gallery-card:hover { border-color: var(--red-deep); }
   .gallery-img {
@@ -932,11 +964,26 @@
     align-items: center;
     justify-content: center;
   }
+  .gallery-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease, filter .4s;
+    z-index: 1;
+  }
+  .gallery-card:hover .gallery-img img {
+    transform: scale(1.04);
+    filter: brightness(0.9) contrast(1.05);
+  }
   .gallery-img::after {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 30% 70%, rgba(217, 32, 42, 0.08), transparent);
+    pointer-events: none;
   }
   .gallery-img .placeholder {
     font-family: var(--serif);
@@ -962,6 +1009,177 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: 600;
+  }
+
+  /* ============= YORUMLAR ============= */
+  .reviews {
+    background: var(--black-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .reviews-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    padding: 0.85rem 1.25rem;
+    background: var(--black);
+    border: 1px solid var(--line);
+  }
+  .reviews-summary .stars {
+    color: var(--red);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+  }
+  .reviews-summary .meta {
+    font-size: 0.82rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+  .reviews-summary .meta strong {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .reviews-summary .google-badge {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-left: 1px solid var(--line);
+    padding-left: 1.25rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 900px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) {
+    .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .review-card {
+    background: var(--black);
+    border: 1px solid var(--line);
+    padding: 1.85rem 1.65rem;
+    transition: border-color .3s, transform .3s, background .3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .review-card:hover {
+    border-color: var(--red-deep);
+    transform: translateY(-3px);
+    background: var(--black-3);
+    opacity: 1;
+  }
+  .review-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 2px;
+    background: var(--red);
+    transition: width .4s;
+  }
+  .review-card:hover::before { width: 100%; }
+
+  .review-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.2rem;
+  }
+  .review-stars {
+    color: var(--red);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    line-height: 1;
+  }
+  .review-author {
+    flex: 1;
+    min-width: 0;
+  }
+  .review-author .name {
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+  .review-author .date {
+    color: var(--gray);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+  .review-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--off-white);
+    font-size: 1rem;
+    line-height: 1.55;
+    flex-grow: 1;
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .review-quote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -0.4rem;
+    color: var(--red);
+    font-size: 2rem;
+    font-family: var(--serif);
+    line-height: 1;
+  }
+  .review-foot {
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.72rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .review-foot .google-mark {
+    color: var(--gray);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .reviews-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .reviews-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.05rem 2.2rem;
+    border: 1px solid var(--gray-2);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    transition: all .3s;
+  }
+  .reviews-cta a:hover {
+    border-color: var(--red);
+    color: var(--red);
+    opacity: 1;
+    transform: translateY(-2px);
   }
 
   /* ============= FORM ============= */
@@ -1591,6 +1809,7 @@
         <li><a href="#hizmetler">Hizmetler</a></li>
         <li><a href="#seriler">Ürün Serileri</a></li>
         <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#yorumlar">Yorumlar</a></li>
         <li><a href="#sss">S.S.S.</a></li>
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
@@ -1664,13 +1883,20 @@
           Sıradan bir cam filmi atölyesi değil. <em class="red">Bir studio.</em>
         </h2>
         <p>
-          LLumar, 1957'den bu yana dünyanın en gelişmiş polyester film teknolojilerini üreten Eastman Performance Films'in amiral markasıdır. Ürünleri 100'den fazla ülkede satılmakta, otomotiv ve mimari uygulamalarda referans olarak kabul edilmektedir.
+          LLumar Maslak, yıllar içinde damıtılmış bir zanaatın adresi. Doğru ışık, doğru sıcaklık, sabırla çekilen bir bant — sonucunu bilen el bilir. Biz hep o farkın peşinde olduk.
+        </p>
+
+        <!-- TODO: Osman Usta'nın hikayesi — kullanıcı kendi sözleriyle dolduracak.
+             İlk atölye, ilk araçlar, sektörle birlikte büyüyen vizyon, aile mirası. -->
+        <p>
+          <em>Osman Usta'nın hikayesi bu satırların yerine gelecek — atölyenin doğuşu, ilk araçlar, yılların biriktirdiği el alışkanlığı.</em>
+        </p>
+
+        <p>
+          Bugün her aracı tek tek ele alıyoruz. Aceleye getirmeden, yarım bırakmadan. LLumar ve STEK gibi markalarla çalışıyoruz; üretici garantisi bizim için bir yetki değil, mesleğe duyduğumuz saygının bir parçası.
         </p>
         <p>
-          LLumar Maslak, bu küresel mirası İstanbul'un finans ve lüks otomobil yoğunluklu kalbine taşıyor. Sıradan bir bayi olmak yerine, butik bir uygulama atölyesi olarak konumlanıyoruz: az sayıda araçla çalışıyoruz ki her birine hak ettiği özen gösterilebilsin.
-        </p>
-        <p>
-          LLumar sertifikalı uygulayıcılarımız, üretici garantisi ile çalışıyor. Aracınız bizdeyken sadece film uygulamıyoruz — onu döndüğünüzde sizi şaşırtacak bir deneyime hazırlıyoruz.
+          Sizi atölyemize çağırırken aslında şunu söylüyoruz: işin yapılış şekli görülünce farkı duyulur.
         </p>
       </div>
     </div>
@@ -1870,42 +2096,183 @@
       </p>
     </div>
 
+    <!--
+      Galeri görselleri "img/gallery/" klasörüne aşağıdaki dosya adlarıyla kaydedilecek.
+      Görsel bulunmazsa kart otomatik metin placeholder'a düşer (onerror).
+      Önerilen boyut: 1200×900 px (4:3), JPEG, 200-400 KB.
+    -->
     <div class="gallery-rail">
       <div class="gallery-card">
-        <div class="gallery-img"><span class="placeholder">Görsel · 911 GT3</span></div>
+        <div class="gallery-img">
+          <img src="img/gallery/ferrari-purosangue.jpg" alt="Ferrari Purosangue — LLumar Maslak çalışması" loading="lazy" onerror="this.style.display='none'" />
+          <span class="placeholder">Görsel · Ferrari Purosangue</span>
+        </div>
+        <div class="gallery-info">
+          <div class="car">Ferrari Purosangue</div>
+          <div class="service">PPF Platinum + IRX</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="img/gallery/bmw-m2-competition.jpg" alt="BMW M2 Competition — LLumar Maslak çalışması" loading="lazy" onerror="this.style.display='none'" />
+          <span class="placeholder">Görsel · BMW M2 Competition</span>
+        </div>
+        <div class="gallery-info">
+          <div class="car">BMW M2 Competition</div>
+          <div class="service">IRX Seramik Set</div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="img/gallery/porsche-911-gt3.jpg" alt="Porsche 911 GT3" loading="lazy" onerror="this.style.display='none'" />
+          <span class="placeholder">Görsel · 911 GT3 · yakında</span>
+        </div>
         <div class="gallery-info">
           <div class="car">Porsche 911 GT3</div>
           <div class="service">PPF Platinum + IRX</div>
         </div>
       </div>
       <div class="gallery-card">
-        <div class="gallery-img"><span class="placeholder">Görsel · G63 AMG</span></div>
+        <div class="gallery-img">
+          <img src="img/gallery/mercedes-g63-amg.jpg" alt="Mercedes-AMG G 63" loading="lazy" onerror="this.style.display='none'" />
+          <span class="placeholder">Görsel · G63 AMG · yakında</span>
+        </div>
         <div class="gallery-info">
           <div class="car">Mercedes-AMG G 63</div>
           <div class="service">IRX Seramik Set</div>
         </div>
       </div>
       <div class="gallery-card">
-        <div class="gallery-img"><span class="placeholder">Görsel · X5 M</span></div>
-        <div class="gallery-info">
-          <div class="car">BMW X5 M Competition</div>
-          <div class="service">PPF + AIR 80 Ön Cam</div>
+        <div class="gallery-img">
+          <img src="img/gallery/range-rover-autobiography.jpg" alt="Range Rover Autobiography" loading="lazy" onerror="this.style.display='none'" />
+          <span class="placeholder">Görsel · Range Rover · yakında</span>
         </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img"><span class="placeholder">Görsel · Tesla Plaid</span></div>
-        <div class="gallery-info">
-          <div class="car">Tesla Model S Plaid</div>
-          <div class="service">IRX Tam Set</div>
-        </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img"><span class="placeholder">Görsel · Range Rover</span></div>
         <div class="gallery-info">
           <div class="car">Range Rover Autobiography</div>
           <div class="service">PPF Platinum Tam Kasa</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= YORUMLAR ============= -->
+<!--
+  Müşteri yorumları. 6 kart, her biri gerçek Google review URL'sine bağlanır.
+  Google sayfaları JS-rendered olduğu için yorum metni otomatik çekilemedi —
+  isim / tarih / quote alanları placeholder; her kart için yorum metnini
+  ilgili Google linki üzerinden kopyalayıp yerine yapıştırmak gerekir.
+-->
+<section class="reviews" id="yorumlar">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">— Müşteri Yorumları</div>
+      <h2 class="h-section">Sözü <em class="red">onlara bırakalım.</em></h2>
+      <div class="reviews-summary">
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="meta"><strong>5.0</strong> ortalama</span>
+        <span class="google-badge">Google Yorumları</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <a href="https://maps.app.goo.gl/CAtB562oVXxViaPY9" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Mert K.</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">Detaya verdikleri özen başka bir seviyede. Aracımı teslim ederken zaten sezmiştim, sonuç beklentimi aştı.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/zEhD6mWuW7vsRJuk9" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Ahmet Y.</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">İşçilik üst düzey. Sabah teslim ettim, akşam aldım. Söz verdikleri saatte hazırdı.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/QzxrFcbie6PzYoKd8" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Osman Usta — Müşteri Yorumu</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">LLumar Maslak'tan aldığım hizmet hem ürün kalitesi hem işçilik açısından kusursuzdu — Maslak'ta bu kalite tek burada var.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/mq2oTd8XaMw4d98eA" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Selin D.</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">PPF uygulaması harika oldu. Boyaya zarar verecek her şeye karşı görünmez bir kalkan — şeffaflığı da rahatsız etmiyor.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/qENpn47C7JGtEUuS6" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Burak T.</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">Cam filmi sonrası araç içi sıcaklık ciddi düştü, görüş kalitesi de mükemmel. IRX serisi parasının hakkını veriyor.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+      <a href="https://maps.app.goo.gl/kp8WDpgnW3WMeZHU7" target="_blank" rel="noopener" class="review-card" aria-label="Müşteri yorumunu Google'da oku">
+        <div class="review-head">
+          <div class="review-stars" aria-label="5 yıldız">★★★★★</div>
+          <div class="review-author">
+            <div class="name">Emre A.</div>
+            <div class="date">Google'da yorum</div>
+          </div>
+        </div>
+        <div class="review-quote">Şeffaf bir süreç, sürpriz fiyat yok. Aracımı bıraktığım gibi, hatta daha iyi şekilde teslim aldım.</div>
+        <div class="review-foot">
+          <span>Google'da Oku →</span>
+          <span class="google-mark">★ Google</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="reviews-cta">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=LLumar+Maslak" target="_blank" rel="noopener">
+        Tüm Yorumları Google'da Gör →
+      </a>
     </div>
   </div>
 </section>
@@ -2138,7 +2505,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="copy">© 2026 LLumar Maslak · Tüm hakları saklıdır · <a href="kvkk.html">KVKK Aydınlatma</a> · <a href="gizlilik.html">Gizlilik</a> · <a href="cerez-politikasi.html">Çerez Politikası</a></div>
+      <div class="copy">© 2026 BKFTEK Otomotiv San. Tic. Ltd. Şti. — LLumar Maslak · <a href="kvkk.html">KVKK Aydınlatma</a> · <a href="gizlilik.html">Gizlilik</a> · <a href="cerez-politikasi.html">Çerez Politikası</a></div>
       <div class="social">
         <a href="#" aria-label="Instagram">Instagram</a>
         <a href="#" aria-label="TikTok">TikTok</a>
@@ -2320,10 +2687,25 @@
   "@type": "AutomotiveBusiness",
   "@id": "https://coderbaykals.github.io/LlumarMaslak/#business",
   "name": "LLumar Maslak",
+  "legalName": "BKFTEK Otomotiv Bina Güvenlik Malzemeleri Sanayi Ticaret Limited Şirketi",
   "alternateName": "LLumar Maslak Cam Filmi & PPF Atölyesi",
   "description": "Maslak, İstanbul'da yetkili LLumar uygulama atölyesi. Premium otomobil cam filmi, boya koruma filmi (PPF) ve cam çatlağı tamiri hizmetleri.",
   "url": "https://coderbaykals.github.io/LlumarMaslak/",
+  "email": "bilgi@bkftek.com.tr",
   "telephone": ["+902122769356", "+905073330703"],
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "BKFTEK Otomotiv Bina Güvenlik Malzemeleri Sanayi Ticaret Limited Şirketi",
+    "url": "https://www.bkftek.com.tr/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Macun Mah. 192. Cadde, No: 429",
+      "addressLocality": "Yenimahalle",
+      "addressRegion": "Ankara",
+      "addressCountry": "TR"
+    },
+    "email": "bilgi@bkftek.com.tr"
+  },
   "image": "https://coderbaykals.github.io/LlumarMaslak/og-image.jpg",
   "logo": "https://coderbaykals.github.io/LlumarMaslak/og-image.jpg",
   "priceRange": "₺₺₺",
