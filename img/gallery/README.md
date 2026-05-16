@@ -2,7 +2,7 @@
 
 Bu klasöre yüklenen JPG dosyaları, `index.html` içindeki galeri kartlarında otomatik gösterilir. Dosya bulunmazsa kart placeholder metnine düşer.
 
-## Dosya Adı Eşleşmesi (9 görsel, 7 araç)
+## Dosya Adı Eşleşmesi (10 görsel, 7 araç)
 
 Aşağıdaki dosya adlarını **birebir** kullanın (küçük harf, tire ile ayrılmış, Türkçe karakter yok):
 
@@ -11,12 +11,13 @@ Aşağıdaki dosya adlarını **birebir** kullanın (küçük harf, tire ile ayr
 | 1 | `ferrari-purosangue.jpg` | Ferrari Purosangue (¾ ön) | Gümüş — tabela altı |
 | 2 | `bmw-m2-competition.jpg` | BMW M2 Competition | Mavi — atölye içi |
 | 3 | `mercedes-amg-gtr.jpg` | Mercedes-AMG GT R (¾) | Yeşil — tabela altı, ¾ ön açı |
-| 4 | `porsche-911-turbo.jpg` | Porsche 911 Turbo | Siyah — atölye içi, ¾ ön (Window Film raflar) |
+| 4 | `porsche-911-turbo.jpg` | Porsche 911 Turbo (ön) | Siyah — atölye içi, ¾ ön (Window Film raflar) |
 | 5 | `tesla-model-y.jpg` | Tesla Model Y | Gümüş — tabela altı, yeni nesil |
 | 6 | `chevrolet-corvette.jpg` | Chevrolet Corvette | Kırmızı — yan profil |
-| 7 | `mercedes-amg-gtr-on.jpg` | Mercedes-AMG GT R (önden) | Yeşil — tam ön, gün batımı |
-| 8 | `chevrolet-silverado.jpg` | Chevrolet Silverado | Siyah — tabela altı, ¾ ön |
-| 9 | `ferrari-purosangue-yan.jpg` | Ferrari Purosangue (yan) | Gümüş — yan profil |
+| 7 | `porsche-911-turbo-arka.jpg` | Porsche 911 Turbo (arka) | Siyah — atölye içi, büyük spoiler |
+| 8 | `mercedes-amg-gtr-on.jpg` | Mercedes-AMG GT R (önden) | Yeşil — tam ön, gün batımı |
+| 9 | `chevrolet-silverado.jpg` | Chevrolet Silverado | Siyah — tabela altı, ¾ ön |
+| 10 | `ferrari-purosangue-yan.jpg` | Ferrari Purosangue (yan) | Gümüş — yan profil |
 
 ## Boyut & Format
 
