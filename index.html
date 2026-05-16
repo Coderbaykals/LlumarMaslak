@@ -2752,14 +2752,12 @@
         </div>
       </div>
 
-      <form class="quote-form" id="quote-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-        <div class="form-title">Bilgi al</div>
-        <div class="form-subtitle">Bize aracınızı anlatın, biz size en doğru çözümü sunalım. Tüm bilgiler gizli tutulur.</div>
+      <form class="quote-form" id="quote-form" novalidate>
+        <div class="form-title">Teklif al</div>
+        <div class="form-subtitle">Aracınızın bilgilerini girin, WhatsApp üzerinden size en kısa sürede dönüş yapalım. Mesajınız gönderilmeden önce tarafınızda gözükür — onaylayıp gönderirsiniz.</div>
 
         <!-- Honeypot (bot tuzağı, kullanıcı görmez) -->
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field" />
-        <input type="hidden" name="_subject" value="LLumar Maslak — Yeni Teklif Talebi" />
-        <input type="hidden" name="_format" value="plain" />
 
         <div class="form-row">
           <div class="form-field">
@@ -2821,21 +2819,21 @@
           <span><a href="kvkk.html" target="_blank" rel="noopener">KVKK Aydınlatma Metni</a>'ni okudum ve iletişim bilgilerimin işlenmesine açık rıza veriyorum.</span>
         </label>
 
-        <button type="submit" class="form-submit">Bilgi Talebi Gönder</button>
-        <div class="form-note">Bilgileriniz KVKK kapsamında korunur. En kısa sürede sizi ararız.</div>
+        <button type="submit" class="form-submit">WhatsApp'tan Teklif Gönder</button>
+        <div class="form-note">Buton WhatsApp'ı açar, mesaj hazır gelir. Siz "Gönder" basana kadar tarafımıza ulaşmaz. Bilgileriniz KVKK kapsamında korunur.</div>
       </form>
 
       <!-- Form success state -->
       <div class="form-success" id="form-success" hidden>
         <div class="success-icon" aria-hidden="true">✓</div>
-        <div class="success-title">Teşekkürler!</div>
-        <div class="success-text">Bilgi talebiniz tarafımıza ulaştı. En kısa sürede sizi arayacağız. Acil durumlarda <a href="tel:+905073330703">0 (507) 333 07 03</a> numarasından da bize ulaşabilirsiniz.</div>
+        <div class="success-title">WhatsApp açıldı</div>
+        <div class="success-text">Mesajınız hazır. WhatsApp penceresinden <strong>Gönder</strong>'e basarak teklif talebinizi iletin — en kısa sürede dönüş yapacağız. WhatsApp açılmadıysa <a href="https://wa.me/905073330703" target="_blank" rel="noopener">buradan</a> manuel olarak yazabilir ya da <a href="tel:+905073330703">0 (507) 333 07 03</a> numarasından arayabilirsiniz.</div>
       </div>
 
       <!-- Form error state -->
       <div class="form-error" id="form-error" hidden>
-        <div class="error-title">Bir sorun oluştu</div>
-        <div class="error-text">Form gönderilemedi. Lütfen tekrar deneyin ya da bizi doğrudan arayın: <a href="tel:+905073330703">0 (507) 333 07 03</a> · <a href="https://wa.me/905073330703" target="_blank" rel="noopener">WhatsApp</a></div>
+        <div class="error-title">WhatsApp açılamadı</div>
+        <div class="error-text">Tarayıcınız yeni sekme açılmasını engelliyor olabilir. <a href="https://wa.me/905073330703" target="_blank" rel="noopener">Buradan WhatsApp'ı manuel açın</a> ya da bizi doğrudan arayın: <a href="tel:+905073330703">0 (507) 333 07 03</a></div>
       </div>
     </div>
   </div>
@@ -3022,16 +3020,19 @@
     });
   });
 
-  // ============= QUOTE FORM SUBMIT (Formspree) =============
+  // ============= QUOTE FORM SUBMIT (WhatsApp deep link) =============
+  // Backend yok: form alanları formatlı bir WhatsApp mesajına dönüştürülüp
+  // wa.me deep link ile yeni sekmede açılır. Müşteri sadece "Gönder" basar.
   const quoteForm = document.getElementById('quote-form');
   const formSuccess = document.getElementById('form-success');
   const formError = document.getElementById('form-error');
+  const WA_PHONE = '905073330703';
 
   if (quoteForm) {
-    quoteForm.addEventListener('submit', async (e) => {
+    quoteForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Honeypot kontrolü — bot doldurduysa sessizce başarıyı oyna
+      // Honeypot — bot doldurduysa sessizce başarıyı oyna, WhatsApp'a yönlendirme
       const hp = quoteForm.querySelector('input[name="_gotcha"]');
       if (hp && hp.value) {
         quoteForm.style.display = 'none';
@@ -3039,42 +3040,49 @@
         return;
       }
 
-      // Formspree placeholder kontrolü — yayın öncesi uyarı
-      if (quoteForm.action.includes('YOUR_FORMSPREE_ID')) {
-        alert('Form henüz aktif değil. Formspree ID eklenmesi gerekiyor.\n\nGeçici olarak bizi doğrudan arayın:\n0 (507) 333 07 03');
+      const fd = new FormData(quoteForm);
+      const v = k => (fd.get(k) || '').toString().trim();
+
+      const ad = v('ad_soyad');
+      const tel = v('telefon');
+      const mail = v('email');
+      const marka = v('arac_markasi');
+      const model = v('model_yil');
+      const hizmetler = fd.getAll('hizmet[]').filter(Boolean);
+      const notlar = v('notlar');
+
+      let msg = '*LLumar Maslak — Teklif Talebi*\n\n';
+      if (ad)   msg += `*Ad Soyad:* ${ad}\n`;
+      if (tel)  msg += `*Telefon:* ${tel}\n`;
+      if (mail) msg += `*E-posta:* ${mail}\n`;
+
+      const arac = [marka, model].filter(Boolean).join(' ').trim();
+      if (arac) msg += `*Araç:* ${arac}\n`;
+
+      if (hizmetler.length) msg += `*Hizmet:* ${hizmetler.join(', ')}\n`;
+      if (notlar) msg += `\n*Not:* ${notlar}\n`;
+      msg += '\n— Site üzerinden gönderildi';
+
+      const url = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
+      const win = window.open(url, '_blank', 'noopener');
+
+      // Pop-up blocker WhatsApp açılışını engellediyse error state göster
+      if (!win) {
+        formError.hidden = false;
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
-      const submitBtn = quoteForm.querySelector('.form-submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Gönderiliyor...';
-      formError.hidden = true;
+      // Form'u sakla, success state'i göster
+      quoteForm.style.display = 'none';
+      formSuccess.hidden = false;
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      try {
-        const formData = new FormData(quoteForm);
-        const response = await fetch(quoteForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'engagement',
+          event_label: 'WhatsApp Quote'
         });
-
-        if (response.ok) {
-          quoteForm.style.display = 'none';
-          formSuccess.hidden = false;
-          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'Quote Form' });
-          }
-        } else {
-          throw new Error('submit_failed');
-        }
-      } catch (err) {
-        formError.hidden = false;
-        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
       }
     });
   }
