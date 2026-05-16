@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ============= SECURITY HEADERS ============= -->
+<!-- CSP: harici script yalnızca Google Tag Manager'dan, harici style yalnızca Google Fonts'tan,
+     harici font yalnızca gstatic'ten. img-src https: pinterest/IG paylaşım önizlemeleri için açık.
+     Inline style/script GitHub Pages statik bir site olduğu için 'unsafe-inline' ile geçer
+     (nonce kullanmak için server-side render gerekirdi). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
 <title>LLumar Maslak — Cam Filmi, PPF & Cam Çatlağı Tamiri | Maslak/İstanbul</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3353,8 +3363,10 @@
     }).filter(i => i.src);
 
     let currentIndex = 0;
+    let lastFocused = null;        // Lightbox açılmadan önce odakta olan element
 
     function open(index) {
+      lastFocused = document.activeElement;
       currentIndex = index;
       render();
       lb.hidden = false;
@@ -3368,9 +3380,31 @@
       lb.classList.remove('open');
       document.body.classList.remove('lightbox-open');
       lbImg.classList.remove('zoomed');
-      // Transition bittikten sonra hidden ayarla
-      setTimeout(() => { lb.hidden = true; }, 260);
+      // Transition bittikten sonra hidden ayarla + odağı geri yükle
+      setTimeout(() => {
+        lb.hidden = true;
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+          lastFocused.focus();
+        }
+      }, 260);
     }
+
+    // Focus trap — Tab tuşu lightbox dışına kaçamaz
+    lb.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || lb.hidden) return;
+      const focusable = lb.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])');
+      const arr = Array.from(focusable).filter(el => el.offsetParent !== null);
+      if (!arr.length) return;
+      const first = arr[0];
+      const last = arr[arr.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
 
     function render() {
       const item = items[currentIndex];
@@ -3526,8 +3560,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 41.1086,
-    "longitude": 29.0186
+    "latitude": 41.118766,
+    "longitude": 29.019643
   },
   "openingHoursSpecification": [
     {
