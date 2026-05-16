@@ -1,13 +1,15 @@
 # LLumar Maslak
 
-> Maslak, İstanbul'da yetkili LLumar uygulama atölyesi. Premium otomobil cam filmi (LLumar), boya koruma filmi PPF (LLumar & STEK) ve cam çatlağı tamiri hizmetleri sunar.
+> Maslak, İstanbul'da yetkili uygulama atölyesi. Otomobil cam filmi (LLumar), boya koruma filmi PPF (LLumar + STEK), STEK DYNO görsel folyo kaplama ve cam çatlağı tamiri hizmetleri sunar.
 
 ## İletişim
 
 - **Sabit Hat:** +90 212 276 93 56
 - **WhatsApp / Mobil:** +90 507 333 07 03
 - **Çalışma Saatleri:** Pazartesi – Cuma 09:00 – 19:00 · Cumartesi 09:00 – 17:00 · Pazar kapalı
-- **Konum:** Maslak, 22. Sk. Atatürk Oto Sanayi Sitesi 2. Kısım, No:765, 34398 Sarıyer / İstanbul, Türkiye
+- **Konum:** Maslak, 22. Sk. Atatürk Oto Sanayi Sitesi 2. Kısım No:765, 34398 Sarıyer/İstanbul, Türkiye
+- **Koordinatlar:** 41.118766, 29.019643
+- **Google Haritalar:** https://www.google.com/maps/place/LLUMAR+MASLAK/
 - **Web:** https://coderbaykals.github.io/LlumarMaslak/
 
 ## Hizmetler
@@ -20,29 +22,44 @@ LLumar markasının beş farklı serisinden seçim:
 - **ATR** — Performans serisi, metalize görünüm. Yüksek ısı reddi, karakteristik estetik, uzatılmış garanti.
 - **CTXI** — Seramik teknolojili ara seri. GPS/sinyal geçirgenliği, doğal renk tonu. Özel sipariş ile tedarik edilir.
 - **AIR 80** — Şeffaf seri, görünmez koruma. Neredeyse görünmez yapı; yüksek ısı engelleme; ön cama uygulanabilir. Karartma istemeyen sürücüler için ideal.
-- **IRX** — Amiral seri, seramik üst sınıf. Yüksek IR (kızılötesi) reddi, 12 yıl üretici garantisi, yüksek görüş netliği.
+- **IRX** — Amiral seri, seramik üst sınıf. %62'ye varan ısı engelleme, üstün IR (kızılötesi) reddi, 12 yıl distribütör garantisi, yüksek görüş netliği.
 
 Tüm seriler %99'un üzerinde UV ışınlarını engeller.
 
-### 2. Boya Koruma Filmi (PPF)
+### 2. Boya Koruma Filmi (PPF) — Şeffaf
 
-İki marka ile çalışılır:
+Çiziklere, taş darbelerine ve kimyasal lekelere karşı görünmez, şeffaf kalkan. Kendinden iyileşen üst sınıf koruma. İki marka, altı seri (fiyat sırasıyla ucuzdan pahalıya):
 
-- **LLumar Platinum** — Üst seviye boya koruma filmi.
-- **LLumar Valor** — Performans odaklı koruma.
-- **STEK** — Alternatif premium marka.
+**LLumar PPF:**
+- **Gloss** — Giriş seviye şeffaf koruma.
+- **Platinum** — Orta-üst seviye, gelişmiş kalınlık ve iyileşme özelliği.
+- **Valor** — Üst seri, premium koruma.
 
-Çiziklere, taş darbelerine ve kimyasal lekelere karşı görünmez kalkan. Kendinden iyileşen üst sınıf koruma.
+**STEK PPF:**
+- **Forceshield** — Giriş seviye şeffaf PPF.
+- **DYNOlite** — Orta seviye.
+- **DYNOshield** — Üst seviye, premium koruma.
 
-### 3. Cam Çatlağı Tamiri
+### 3. Folyo Kaplama (STEK DYNO Görsel Serisi)
 
-Ön cam taş izleri ve çatlakların profesyonel onarımı. Cam değişimine alternatif, hızlı ve uygun maliyetli çözüm.
+Boyaya görsel etki veren ve aynı zamanda PPF'in koruyucu özelliklerini taşıyan estetik folyolar:
+
+- **DYNOblack** — Orijinal boyadan daha derin, sınıf üstü siyah ton. Boya korumasını da içerir.
+- **DYNOcarbon** — Gerçeğe en yakın kusursuz karbon fiber görünümü. Üst PPF katmanıyla korunur.
+- **DYNOshade** — Renkli görsel folyo.
+- **DYNOsmoke** — Farları karartmak ve aynı zamanda korumak için kullanılan özel folyo.
+
+### 4. Cam Çatlağı Tamiri
+
+Ön cam taş izleri ve çatlakların profesyonel onarımı. Cam değişimine alternatif: çatlağın ilerlemesi durur, orijinal cama dokunulmaz, görüntü ciddi oranda iyileşir. Hızlı ve uygun maliyetli çözüm.
 
 ## Marka
 
 LLumar, 1957'den bu yana dünyanın en gelişmiş polyester film teknolojilerini üreten Eastman Performance Films'in amiral markasıdır. 100'den fazla ülkede satılır; otomotiv ve mimari uygulamalarda referans olarak kabul edilir.
 
-LLumar Maslak, bu küresel mirası İstanbul'un finans ve lüks otomobil yoğunluklu kalbine taşıyan butik bir uygulama atölyesidir.
+STEK, ABD merkezli premium boya koruma filmi (PPF) ve görsel folyo üreticisidir. DYNO görsel serisi (siyah, karbon, renkli, far folyosu) atölyedeki estetik kaplamaların temelidir.
+
+LLumar Maslak, bu küresel mirası İstanbul'un finans ve lüks otomobil yoğunluklu kalbine taşıyan butik bir uygulama atölyesidir. Osman Usta kurucu ve uygulama ustasıdır. Google'da 4,7 yıldız ortalaması ve 96 yorum.
 
 ## Sıkça Sorulan Sorular
 
@@ -52,17 +69,23 @@ Türkiye'de ön ve sürücü-yan camlarda görüş geçirgenliği ile ilgili sı
 **PPF ile cam filmi arasındaki fark nedir?**
 Cam filmi camlara uygulanır (ısı, UV, görüş). PPF boyalı yüzeylere uygulanan görünmez kaplamadır (çizik, taş darbesi, kimyasal koruma). Farklı amaçlar; müşterilerin önemli kısmı her ikisini birden tercih eder.
 
-**Hangi seriyi seçmeliyim?**
+**STEK DYNO folyo ile şeffaf PPF arasındaki fark?**
+Her ikisi de PPF özelliklerine sahip (koruma, kendinden iyileşme). Fark görsel etkide: şeffaf PPF aracın orijinal rengini korur; DYNO serisi rengi değiştirir/derinleştirir (siyah, karbon, renkli) ya da farı karartır. Yani DYNO = görsel dönüşüm + PPF koruması bir arada.
+
+**Hangi LLumar serisini seçmeliyim?**
 Bütçe, ısı koruma beklentisi ve estetik tercih seçimi belirler. ATC fiyat-performans; ATR metalize estetik; AIR 80 şeffaflık; IRX amiral seri (12 yıl garanti).
 
+**Cam çatlağı tamiri nasıl yapılır?**
+Profesyonel reçine enjeksiyonu ile çatlak içine işlem yapılır. Çatlağın yürümesi durur, orijinal camın değişmesi gerekmez, görüntü ciddi oranda iyileşir. Cam değiştirmeye göre çok daha hızlı ve uygun maliyetlidir.
+
 **Uygulama ne kadar sürer?**
-Standart cam filmi (5 cam): ~4-5 saat. Tam kasa PPF: 2-4 gün.
+Standart cam filmi (5 cam): ~4-5 saat. Tam kasa PPF: 2-4 gün. Cam çatlağı tamiri: 30-60 dakika.
 
 **Garanti süresi ne kadar?**
-5 yıldan başlayıp IRX'te 12 yıla kadar üretici garantisi.
+Cam filmi: 5 yıldan başlayıp IRX'te 12 yıla kadar üretici garantisi. PPF: marka ve seriye göre değişir.
 
 **Fiyatlar neye göre belirleniyor?**
-Aracın marka/model/yıl/cam yapısı ve seçilen seriye göre. Standart liste fiyatı yok; her teklif kişiye özel.
+Aracın marka/model/yıl/cam yapısı ve seçilen seriye göre. Standart liste fiyatı yok; her teklif kişiye özel. WhatsApp üzerinden hızlı teklif alınabilir: +90 507 333 07 03.
 
 ## Hizmet Verilen Bölgeler
 
@@ -70,4 +93,4 @@ Maslak, Sarıyer, Levent, Etiler, Bebek ve İstanbul geneli.
 
 ## Anahtar Kelimeler
 
-cam filmi maslak, llumar maslak, ppf maslak, boya koruma filmi istanbul, cam çatlağı tamiri maslak, llumar yetkili bayi, stek ppf, irx seramik cam filmi, otomobil cam filmi istanbul, air 80 şeffaf cam filmi, panoramik cam filmi
+cam filmi maslak, llumar maslak, ppf maslak, boya koruma filmi istanbul, stek ppf maslak, stek dyno folyo, dynoblack folyo, dynocarbon karbon fiber folyo, dynoshade folyo, dynosmoke far karartma, far folyosu maslak, cam çatlağı tamiri maslak, llumar yetkili bayi, irx seramik cam filmi, air 80 şeffaf cam filmi, panoramik cam filmi, mat siyah araç kaplama
