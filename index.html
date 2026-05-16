@@ -1070,7 +1070,10 @@
       letter-spacing: 0.18em;
     }
   }
+  /* Placeholder yalnızca img yüklenemediği zaman görünür (JS no-image class'ı ekler).
+     Aksi halde gizli — görsel adı zaten kartın altındaki .gallery-info'da yazıyor. */
   .gallery-img .placeholder {
+    display: none;
     font-family: var(--serif);
     color: var(--red-deep);
     font-style: italic;
@@ -1078,6 +1081,134 @@
     letter-spacing: 0.2em;
     z-index: 2;
   }
+  .gallery-img.no-image .placeholder { display: inline-block; }
+
+  /* Galeri kartları tıklanabilir — lightbox açar */
+  .gallery-card { cursor: zoom-in; }
+
+  /* ============= LIGHTBOX ============= */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.96);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    cursor: zoom-out;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox-img {
+    max-width: 95vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    cursor: zoom-in;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform .3s ease;
+    transform-origin: center center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-img.zoomed {
+    transform: scale(1.8);
+    cursor: zoom-out;
+  }
+  .lightbox-caption {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--white);
+    max-width: 90vw;
+  }
+  .lightbox-caption .car {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+  .lightbox-caption .service {
+    font-size: 0.72rem;
+    color: var(--red);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, border-color .2s, transform .2s;
+    line-height: 1;
+    padding: 0;
+    font-family: var(--sans);
+  }
+  .lightbox-close:hover {
+    background: rgba(217, 32, 42, 0.35);
+    border-color: var(--red);
+    transform: scale(1.05);
+  }
+  .lightbox-counter {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  .lightbox-nav:hover {
+    background: rgba(217, 32, 42, 0.35);
+    border-color: var(--red);
+  }
+  .lightbox-nav.prev { left: 1.5rem; }
+  .lightbox-nav.next { right: 1.5rem; }
+  @media (max-width: 700px) {
+    .lightbox-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+    .lightbox-nav.prev { left: 0.75rem; }
+    .lightbox-nav.next { right: 0.75rem; }
+    .lightbox-close { top: 1rem; right: 1rem; }
+    .lightbox-counter { top: 1.2rem; left: 1rem; font-size: 0.7rem; }
+    .lightbox-caption .car { font-size: 1.1rem; }
+  }
+  body.lightbox-open { overflow: hidden; }
   .gallery-info {
     padding: 1.5rem;
     background: var(--black-2);
@@ -3061,6 +3192,19 @@
   </div>
 </div>
 
+<!-- Lightbox (galeri görsel büyüteci) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Görsel önizleme" hidden>
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Kapat">×</button>
+  <div class="lightbox-counter" id="lightbox-counter" aria-live="polite"></div>
+  <button type="button" class="lightbox-nav prev" id="lightbox-prev" aria-label="Önceki görsel">‹</button>
+  <img class="lightbox-img" id="lightbox-img" alt="" />
+  <button type="button" class="lightbox-nav next" id="lightbox-next" aria-label="Sonraki görsel">›</button>
+  <div class="lightbox-caption">
+    <div class="car" id="lightbox-car"></div>
+    <div class="service" id="lightbox-service"></div>
+  </div>
+</div>
+
 <!-- WhatsApp Float -->
 <a href="https://wa.me/905073330703" class="wa-float" aria-label="WhatsApp ile iletişim">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -3182,6 +3326,134 @@
       }
     });
   }
+
+  // ============= GALERİ LIGHTBOX =============
+  (function() {
+    const cards = document.querySelectorAll('.gallery-card');
+    if (!cards.length) return;
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCar = document.getElementById('lightbox-car');
+    const lbService = document.getElementById('lightbox-service');
+    const lbCounter = document.getElementById('lightbox-counter');
+    const lbClose = document.getElementById('lightbox-close');
+    const lbPrev = document.getElementById('lightbox-prev');
+    const lbNext = document.getElementById('lightbox-next');
+
+    // Görsel verilerini kartlardan topla
+    const items = Array.from(cards).map(card => {
+      const img = card.querySelector('img');
+      return {
+        src: img ? img.src : '',
+        alt: img ? img.alt : '',
+        car: (card.querySelector('.car') || {}).textContent || '',
+        service: (card.querySelector('.service') || {}).textContent || ''
+      };
+    }).filter(i => i.src);
+
+    let currentIndex = 0;
+
+    function open(index) {
+      currentIndex = index;
+      render();
+      lb.hidden = false;
+      // Repaint için bir frame bekle, sonra .open class'ı ekle (opacity transition)
+      requestAnimationFrame(() => lb.classList.add('open'));
+      document.body.classList.add('lightbox-open');
+      lbClose.focus();
+    }
+
+    function close() {
+      lb.classList.remove('open');
+      document.body.classList.remove('lightbox-open');
+      lbImg.classList.remove('zoomed');
+      // Transition bittikten sonra hidden ayarla
+      setTimeout(() => { lb.hidden = true; }, 260);
+    }
+
+    function render() {
+      const item = items[currentIndex];
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+      lbImg.classList.remove('zoomed');
+      lbCar.textContent = item.car;
+      lbService.textContent = item.service;
+      lbCounter.textContent = `${currentIndex + 1} / ${items.length}`;
+    }
+
+    function nav(dir) {
+      currentIndex = (currentIndex + dir + items.length) % items.length;
+      render();
+    }
+
+    // Kart tıklaması — lightbox aç
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const img = card.querySelector('img');
+        if (!img) return;
+        // Img'i items listesindeki sırasını bul
+        const realIdx = items.findIndex(i => i.src === img.src);
+        open(realIdx >= 0 ? realIdx : idx);
+      });
+      // Erişilebilirlik: kart klavyeyle de tıklanabilir
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    // Lightbox kontroller
+    lbClose.addEventListener('click', close);
+    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); nav(-1); });
+    lbNext.addEventListener('click', (e) => { e.stopPropagation(); nav(1); });
+
+    // Görsele tıklayınca zoom toggle (mobil pinch-to-zoom yine native çalışır)
+    lbImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lbImg.classList.toggle('zoomed');
+    });
+
+    // Overlay'in boş yerine tıklayınca kapat (görsel veya butonlar dışı)
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) close();
+    });
+
+    // Klavye: ESC kapat, ← → nav
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') nav(-1);
+      else if (e.key === 'ArrowRight') nav(1);
+    });
+
+    // Mobil swipe (basit, touchmove yok — touchstart/end)
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      if (lbImg.classList.contains('zoomed')) return; // zoom modunda swipe disable
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) > 50) nav(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    // Görsel yüklenemediyse placeholder göster
+    document.querySelectorAll('.gallery-img img').forEach(img => {
+      img.addEventListener('error', () => {
+        img.closest('.gallery-img').classList.add('no-image');
+      });
+      // Zaten error olduysa (cache'den) hemen kontrol
+      if (img.complete && img.naturalWidth === 0) {
+        img.closest('.gallery-img').classList.add('no-image');
+      }
+    });
+  })();
 
   // ============= COOKIE CONSENT (KVKK) =============
   (function() {
