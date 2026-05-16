@@ -2,7 +2,7 @@
 
 Maslak, İstanbul'da yetkili LLumar uygulama atölyesinin resmi web sitesi.
 
-**Tüzel kişilik:** BKFTEK Otomotiv Bina Güvenlik Malzemeleri Sanayi Ticaret Limited Şirketi
+**Tüzel kişilik:** LLumar Maslak
 **Marka:** LLumar Maslak (Maslak/İstanbul atölyesi)
 **Canlı:** https://coderbaykals.github.io/LlumarMaslak/
 
